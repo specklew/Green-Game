@@ -53,3 +53,6 @@ Use the declaration order described below:
 
 ## Branches
 Each component should have its own branch named `component_{component name}`. Please create a pull request after being done with your branch.
+
+## Additional notes
+**Please don't use threading in your application since WebGL doesn't support it!!**
