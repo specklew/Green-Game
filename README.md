@@ -39,7 +39,7 @@ For the sake of naming handlers use `PascalCase` with prefix "On-". For example:
 - `EnemyKilledHandler` -> Bad
 - `OnEnemyKilledHandler` -> Bad
 
-Matters not mentioned in this section are described in the [Microsoft Documentation](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions).
+Matters not discussed in this section are described in the [Microsoft Documentation](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions).
 
 
 ## Ordering 
