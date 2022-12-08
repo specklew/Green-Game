@@ -55,5 +55,5 @@ Use the declaration order described below:
 Each component should have its own branch named `component_{component name}`. Please create a pull request after being done with your branch.
 
 ## Additional notes
-- **Test your components in your scenes. _DO NOT MODIFY OTHER SCENES!_ The merging of scene files is a nightmare and we don't want to do that.**
-- **Please _don't use threading_ in your application since WebGL doesn't support it!!**
+- Test your components in your scenes. **DO NOT MODIFY OTHER SCENES!** The merging of scene files is a nightmare and we don't want to do that.
+- Please **don't use threading** in your application since WebGL doesn't support it!!
