@@ -15,12 +15,17 @@ public class TransportMinigame : MonoBehaviour, IMinigame
     public GameObject transport3;
     public GameObject transport4;
     public GameObject result;
+    public GameObject button1;
+    public GameObject button2;
+    public GameObject button3;
+    public GameObject button4;
 
     public TextMeshProUGUI transport1Text;
     public TextMeshProUGUI transport2Text;
     public TextMeshProUGUI transport3Text;
     public TextMeshProUGUI transport4Text;
     public TextMeshProUGUI resultText;
+    public Button button1Click;
 
     #endregion
 
@@ -63,30 +68,58 @@ public class TransportMinigame : MonoBehaviour, IMinigame
     public void CalculateEnvironmentPoints(MeanOfTransport chosenTransport)
     {
         EnvironmentPoints = chosenTransport.PointsValue;
-        resultText.text = "Your score: " + EnvironmentPoints.ToString();
+        resultText.text = "You selected " + chosenTransport.Name + ", Your score: " + EnvironmentPoints.ToString();
     }
 
     public void T1ButtonOnClick()
     {
         CalculateEnvironmentPoints(displayedAvailableTransport[0]);
         transport1Text.color = Color.blue;
+        IsCompleted = true;
+        MorbButtons();
+        
     }
 
     public void T2ButtonOnClick()
     {
         CalculateEnvironmentPoints(displayedAvailableTransport[1]);
         transport2Text.color = Color.blue;
+        IsCompleted = true;
+        MorbButtons();
     }
 
     public void T3ButtonOnClick()
     {
         CalculateEnvironmentPoints(displayedAvailableTransport[2]);
         transport3Text.color = Color.blue;
+        IsCompleted = true;
+        MorbButtons();
     }
 
     public void T4ButtonOnClick()
     {
         CalculateEnvironmentPoints(displayedAvailableTransport[3]);
         transport4Text.color = Color.blue;
+        IsCompleted = true;
+        MorbButtons();
+    }
+
+    public void MorbButtons()
+    {
+        var b1 = button1.GetComponent<Button>();
+        b1.GetComponentInChildren<TMP_Text>().text = "score: " + displayedAvailableTransport[0].PointsValue.ToString();
+        b1.interactable = false;
+
+        var b2 = button2.GetComponent<Button>();
+        b2.GetComponentInChildren<TMP_Text>().text = "score: " + displayedAvailableTransport[1].PointsValue.ToString();
+        b2.interactable = false;
+
+        var b3 = button3.GetComponent<Button>();
+        b3.GetComponentInChildren<TMP_Text>().text = "score: " + displayedAvailableTransport[2].PointsValue.ToString();
+        b3.interactable = false;
+
+        var b4 = button4.GetComponent<Button>();
+        b4.GetComponentInChildren<TMP_Text>().text = "score: " + displayedAvailableTransport[3].PointsValue.ToString();
+        b4.interactable = false;
     }
 }

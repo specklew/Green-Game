@@ -1252,7 +1252,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -326.2115, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1283,8 +1283,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -200}
-  m_SizeDelta: {x: 390.7216, y: 63.9213}
+  m_AnchoredPosition: {x: -162.52368, y: -200}
+  m_SizeDelta: {x: 715.769, y: 63.9213}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1133490000
 GameObject:
@@ -2156,11 +2156,16 @@ MonoBehaviour:
   transport3: {fileID: 593698377}
   transport4: {fileID: 1588288504}
   result: {fileID: 1097501170}
+  button1: {fileID: 1271431398}
+  button2: {fileID: 210040079}
+  button3: {fileID: 1165768049}
+  button4: {fileID: 2009868157}
   transport1Text: {fileID: 0}
   transport2Text: {fileID: 0}
   transport3Text: {fileID: 0}
   transport4Text: {fileID: 0}
   resultText: {fileID: 0}
+  button1Click: {fileID: 0}
 --- !u!1 &2009868157
 GameObject:
   m_ObjectHideFlags: 0
