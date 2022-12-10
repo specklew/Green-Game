@@ -8,9 +8,15 @@ public class World : MonoBehaviour
     private int water;
     private int litter;
     private int air;
-    public Sprite water_sprite;
-    public Sprite litter_sprite;
-    public Sprite air_sprite;
+    public Sprite water_good_sprite;
+    public Sprite water_medium_sprite;
+    public Sprite water_bad_sprite;
+    public Sprite litter_good_sprite;
+    public Sprite litter_medium_sprite;
+    public Sprite litter_bad_sprite;
+    public Sprite air_good_sprite;
+    public Sprite air_medium_sprite;
+    public Sprite air_bad_sprite;
 
 
     public void set_Water_condition(int water)
