@@ -9,15 +9,15 @@ public class World : MonoBehaviour
     private int water;
     private int litter;
     private int air;
-    public Sprite water_good_sprite;
-    public Sprite water_medium_sprite;
-    public Sprite water_bad_sprite;
-    public Sprite litter_good_sprite;
-    public Sprite litter_medium_sprite;
-    public Sprite litter_bad_sprite;
-    public Sprite air_good_sprite;
-    public Sprite air_medium_sprite;
-    public Sprite air_bad_sprite;
+    [SerializeField] private Sprite water_good_sprite = Resources.Load<Sprite>("Sprites/water_good");
+    [SerializeField] private Sprite water_medium_sprite = Resources.Load<Sprite>("Sprites/water_medium");
+    [SerializeField] private Sprite water_bad_sprite = Resources.Load<Sprite>("Sprites/water_bad");
+    [SerializeField] private Sprite litter_good_sprite = Resources.Load<Sprite>("Sprites/litter_good");
+    [SerializeField] private Sprite litter_medium_sprite = Resources.Load<Sprite>("Sprites/litter_medium");
+    [SerializeField] private Sprite litter_bad_sprite = Resources.Load<Sprite>("Sprites/litter_bad");
+    [SerializeField] private Sprite air_good_sprite = Resources.Load<Sprite>("Sprites/air_good");
+    [SerializeField] private Sprite air_medium_sprite = Resources.Load<Sprite>("Sprites/air_medium");
+    [SerializeField] private Sprite air_bad_sprite = Resources.Load<Sprite>("Sprites/air_bad");
 
 
     public void set_Water_condition(int water)
