@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
 public class AccountMenu : MonoBehaviour
 {
-	private string Login;
-	private string Password;
+	private string _login;
+	private string _password;
 	
 	public void Return ()
 	{
@@ -16,29 +14,25 @@ public class AccountMenu : MonoBehaviour
 	
 	public void ReadLoginInput(string s)
 	{
-		Login = s;
+		_login = s;
 	}
 	
 	public void ReadPasswordInput(string s)
 	{
-		Password = s;
+		_password = s;
 	}
 	
-	public void LogIn ()
+	public void LogIn()
 	{
-		Debug.Log ("Login");
-		Debug.Log (Login);
-		Debug.Log ("Password");
-		Debug.Log (Password);
-		SceneManager.LoadScene(2);
+		if(GameManager.Instance.LogPlayer(_login, _password)) SceneManager.LoadScene("WorldDesign");
+		else Debug.LogWarning("Password or username is wrong.");
+		//TODO: Inform the player using UI that password or username is wrong.
 	}
 
-	public void CreateAccount ()
+	public void CreateAccount()
 	{
-		Debug.Log ("Login");
-		Debug.Log (Login);
-		Debug.Log ("Password");
-		Debug.Log (Password);
+		Debug.Log("Registered player with login = " + _login + " and password = " + _password);
+		GameManager.Instance.RegisterPlayer(_login, _password);
 		//Here code for creating account
 	}	
 }

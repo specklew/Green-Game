@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     private GameManager()
     {
+        players = new Dictionary<ulong, PlayerData>();
         //TODO: get data from mockup file
     }
 
@@ -46,6 +48,7 @@ public class GameManager : MonoBehaviour
     {
         ulong id = HashFunction(username);
         players.Add(id, new PlayerData(username, password));
+        Debug.Log("Registered player with login = " + username + " and password = " + password);
     }
 
     public bool LogPlayer(string username, string password)
