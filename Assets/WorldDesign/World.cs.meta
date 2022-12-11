@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 39793e243fad088449746bc490cae552
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_World: {instanceID: 0}
+  - water_good_sprite: {fileID: 21300000, guid: f0fd09b48240284408ff88dbd751782d, type: 3}
+  - water_medium_sprite: {fileID: 21300000, guid: 488120174d3a22d44b276e3b20c467f3, type: 3}
+  - water_bad_sprite: {fileID: 21300000, guid: 8b0d8fa6ec3f9b94ab6af7fc6f6704f9, type: 3}
+  - litter_good_sprite: {fileID: 21300000, guid: 23e987f9de747284fa5cdc338b7eb8a6, type: 3}
+  - litter_medium_sprite: {fileID: 21300000, guid: d4ead47a297c77849b69c172d3327def, type: 3}
+  - litter_bad_sprite: {fileID: 21300000, guid: 26d551e3c9de9024fbd2ff894649ae55, type: 3}
+  - air_good_sprite: {fileID: 21300000, guid: f061518cd2c58e346adc50f2d6a7ea11, type: 3}
+  - air_medium_sprite: {fileID: 21300000, guid: 13836c940f70ec8409c753e0111fef16, type: 3}
+  - air_bad_sprite: {fileID: 21300000, guid: de55795f8fd98384a804bab7d1ea092c, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -29,7 +29,7 @@ public class ProgressPopUp : MonoBehaviour
 
     private GameObject[] gameObjectTaskList;
 
-
+   
 
     private Text playerScore;
     private Text playerName;
@@ -46,6 +46,7 @@ public class ProgressPopUp : MonoBehaviour
 
     void Awake()
     {
+       // world = GameObject.Find("Main").GetComponent<WorldDesign>();
 
         gameObjectTaskList = new GameObject[] { Task1, Task2, Task3, Task4, Task5};
 
@@ -55,7 +56,7 @@ public class ProgressPopUp : MonoBehaviour
         waterCondition = waterConditionGameObject.GetComponent<Text>();
         litterCondition = litterConditionGameObject.GetComponent<Text>();
         airCondition = airConditionGameObject.GetComponent<Text>();
-
+        
     }
 
 
@@ -70,6 +71,7 @@ public class ProgressPopUp : MonoBehaviour
     }
 
     public void setWaterCondition(string condition)
+
     {
         this.waterCondition.text = condition;
     }
@@ -83,6 +85,25 @@ public class ProgressPopUp : MonoBehaviour
     {
         this.airCondition.text = condition;
     }
+    //
+    /*
+    public void setWaterCondition()
+
+    {
+        this.waterCondition.text = world.get_Water_condition.text;
+    }
+
+    public void setLitterCondition()
+    {
+        this.litterCondition.text = world.get_Litter_condition.text;
+    }
+
+    public void setAirCondition()
+    {
+        this.airCondition.text = world.get_Air_condition.text;
+    }
+    */
+    //
 
     public void setTask(int taskPosition, Task task)
     {
