@@ -29,5 +29,6 @@ public class PlayerCommunicator : NetworkBehaviour
     private void SendFriendRequestClientRPC(ClientRpcParams clientRpcParams = default)
     {
         Debug.Log("Friend request sent to user with id = " + NetworkManager.LocalClientId);
+        //TODO: Connect with popups
     }
 }
