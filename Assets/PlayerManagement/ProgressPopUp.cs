@@ -71,39 +71,23 @@ public class ProgressPopUp : MonoBehaviour
     }
 
     public void setWaterCondition(string condition)
-
     {
-        this.waterCondition.text = condition;
+        // this.waterCondition.text = condition;
+        this.waterCondition.text = World.water.ToString();
     }
 
     public void setLitterCondition(string condition)
     {
-        this.litterCondition.text = condition;
+        //this.litterCondition.text = condition;
+        this.waterCondition.text = World.litter.ToString();
     }
 
     public void setAirCondition(string condition)
     {
-        this.airCondition.text = condition;
-    }
-    //
-    /*
-    public void setWaterCondition()
-
-    {
-        this.waterCondition.text = world.get_Water_condition.text;
+        //.airCondition.text = condition;
+        this.waterCondition.text = World.air.ToString();
     }
 
-    public void setLitterCondition()
-    {
-        this.litterCondition.text = world.get_Litter_condition.text;
-    }
-
-    public void setAirCondition()
-    {
-        this.airCondition.text = world.get_Air_condition.text;
-    }
-    */
-    //
 
     public void setTask(int taskPosition, Task task)
     {
@@ -133,6 +117,11 @@ public class ProgressPopUp : MonoBehaviour
             return null;
         }
     }
-
+    void Update()
+    {
+        setWaterCondition("1");
+        setLitterCondition("1");
+        setAirCondition("1");
+    }
 
 }

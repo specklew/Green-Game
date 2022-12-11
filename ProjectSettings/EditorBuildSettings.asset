@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WorldDesign.unity
     guid: 580703bf5790eec4ebd764c80b61d4b7
+  - enabled: 1
+    path: Assets/Scenes/Player Management Scene.unity
+    guid: 13f1f984b9e5c1c4ebd855014dd4ad84
   m_configObjects: {}

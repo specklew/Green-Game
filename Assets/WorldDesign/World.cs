@@ -6,9 +6,9 @@ public class World : MonoBehaviour
 {
     public GameObject m_World;
     public SpriteRenderer spriteR;
-    private int water;
-    private int litter;
-    private int air;
+    public static int water;
+    public static int litter;
+    public static int air;
     /*
     [SerializeField] private Sprite water_good_sprite = Resources.Load<Sprite>("Sprites/water_good");
     [SerializeField] private Sprite water_medium_sprite = Resources.Load<Sprite>("Sprites/water_medium");
@@ -30,15 +30,18 @@ public class World : MonoBehaviour
 
     public void set_Water_condition(int water)
     {
-        this.water = water;
+        //this.water = water;
+        World.water = water;
     }
     public void set_Litter_condition(int litter)
     {
-        this.litter= litter;
+        //this.litter= litter;
+        World.litter = litter;
     }
     public void set_Air_condition(int air)
     {
-        this.air = air;
+        //this.air = air;
+        World.air = air;
     }
     public int get_Water_condition()
     {
@@ -56,9 +59,9 @@ public class World : MonoBehaviour
     void Start()
     {
         spriteR = gameObject.GetComponent<SpriteRenderer>();
-        set_Water_condition(1);
-        set_Litter_condition(1);
-        set_Air_condition(1);
+        set_Water_condition(0);
+        set_Litter_condition(0);
+        set_Air_condition(0);
     }
 
 
