@@ -84,8 +84,11 @@ public class ProgressPopUp : MonoBehaviour
 
     public void setAirCondition(string condition)
     {
-        //.airCondition.text = condition;
-        this.waterCondition.text = World.air.ToString();
+       // this.airCondition.text = condition;
+        //this.waterCondition.text = World.air.ToString();
+        //this.airCondition.text = condition;
+        //this.waterCondition.text = World.air.ToString();
+        this.waterCondition.text = GameManager.Instance.GetCurrentPlayerPointsOfType(PointsType.AIR).ToString();
     }
 
 
@@ -121,7 +124,7 @@ public class ProgressPopUp : MonoBehaviour
     {
         setWaterCondition("1");
         setLitterCondition("1");
-        setAirCondition("1");
+        setAirCondition("dziekan");
     }
 
 }
