@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -37,6 +38,16 @@ public class GameManager : MonoBehaviour
     public int GetCurrentPlayerPointsOfType(PointsType type)
     {
         return players[CurrentPlayerId].playerPoints[type];
+    }
+
+    public int GetCurrentPlayerPoints()
+    {
+        return players[CurrentPlayerId].playerPoints.Sum(valuePair => valuePair.Value);
+    }
+
+    public string GetCurrentPlayerName()
+    {
+        return players[CurrentPlayerId].username;
     }
 
     public void AddFriendToCurrentPlayer(ulong friendId)

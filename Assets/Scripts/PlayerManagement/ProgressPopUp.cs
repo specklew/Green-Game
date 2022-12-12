@@ -97,7 +97,7 @@ public class ProgressPopUp : MonoBehaviour
         currentTaskName = GetChildWithName(currentTask, "TextTaskName").GetComponent<Text>();
         currentTaskStatus = GetChildWithName(currentTask, "TextTaskStatus").GetComponent<Text>();
 
-        currentTaskType.text = task.getType();
+        currentTaskType.text = task.getType().ToString();
         currentTaskName.text = task.getName();
         currentTaskStatus.text = task.getStatus();
 

@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    [SerializeField]
-    private int playerId;
-    [SerializeField]
-    private string playerName;
-    [SerializeField]
-    private int playerScore = 0;
     public GameObject progressPopupGameObject;
 
     private ArrayList tasks = new ArrayList();
@@ -32,9 +26,6 @@ public class PlayerManager : MonoBehaviour
         //Initialize the array of tasks
         tasks = new ArrayList(5);
 
-        //Fetch Player ID From database
-        FetchPlayerID();
-
         //Fetch Tasks of the player from database
         //...code...
 
@@ -45,37 +36,32 @@ public class PlayerManager : MonoBehaviour
         if (isNewConnection())
         {
             turnNotDoneTaskToFail();
-            ComputeScore();
-            scoreLastDay += playerScore;
+            UpdateScoreInDatabase();
+            scoreLastDay += GameManager.Instance.GetCurrentPlayerPoints();
             Generate5DailyTask();
         }
     }
     private void Update()
     {
-        progressPopup.setTextScore(this.playerScore);
-        progressPopup.setTextName(this.playerName);
+        progressPopup.setTextScore(GameManager.Instance.GetCurrentPlayerPoints());
+        progressPopup.setTextName(GameManager.Instance.GetCurrentPlayerName());
     }
 
 
     #region IPlayerManager
 
-    public PlayerManager(int playerId)
-    {
-        this.playerId = playerId;
-    }
-
     //Call when a game finished
     public void UpdateTaskStatus(int taskId, string status)
     {
-        foreach (Task task in this.tasks)
+        foreach (Task task in tasks)
         {
             if (task.getId() == taskId)
             {
                 task.setStatus(status);
             }
         }
-        ComputeScore();
-        playerScore = scoreLastDay + playerScore; 
+        UpdateScoreInDatabase();
+        //playerScore = scoreLastDay + playerScore; 
     }
 
     public void DisplayPopUp(Task[] dailyTasks)
@@ -96,7 +82,7 @@ public class PlayerManager : MonoBehaviour
 
     private void turnNotDoneTaskToFail()
     {
-        foreach (Task task in this.tasks)
+        foreach (Task task in tasks)
         {
             if (task.getStatus() == "not done")
             {
@@ -112,26 +98,25 @@ public class PlayerManager : MonoBehaviour
         for (int i = 0; i < NUMBER_OF_TASK; i++)
         {
             float randomNumber = Random.Range(0, 4);
-            Task currentTask = Task.CreateInstance(playerId, Random.Range(0, 1000), availableTask[(int)randomNumber], "daily", "not done");
-            this.tasks.Add(currentTask);
+            Task currentTask = Task.CreateInstance(GameManager.Instance.CurrentPlayerId, Random.Range(0, 1000), availableTask[(int)randomNumber], (PointsType)Random.Range(0,2), "not done");
+            tasks.Add(currentTask);
             progressPopup.setTask(i, currentTask);
         }
-        return this.tasks;
+        return tasks;
     }
 
-    private int ComputeScore()
+    private void UpdateScoreInDatabase()
     {
-        foreach (Task task in this.tasks)
+        foreach (Task task in tasks)
         {
             if (task.getStatus() == "done")
             {
-                this.playerScore += 20;
+                GameManager.Instance.AddPointsToCurrentPlayer(task.getType(), 20);
             } else if (task.getStatus() == "failed")
             {
-                this.playerScore -= 10;
+                GameManager.Instance.AddPointsToCurrentPlayer(task.getType(), -10);
             }
         }
-        return this.playerScore;
     }
 
 
@@ -139,7 +124,7 @@ public class PlayerManager : MonoBehaviour
     {
         //TODO Fetch tasks of the player from database
         //...code...
-        return this.tasks;
+        return tasks;
     }
 
     private void FetchWorldCondition()
@@ -149,14 +134,6 @@ public class PlayerManager : MonoBehaviour
         progressPopup.setWaterCondition("GOOD");
         progressPopup.setLitterCondition("GOOD");
         progressPopup.setAirCondition("GOOD");
-    }
-
-
-    private void FetchPlayerID()
-    {
-        //TODO : Fetch Player ID From Database after the registration of the player
-        //...code...
-        this.playerId = 23;
     }
 
     #endregion
