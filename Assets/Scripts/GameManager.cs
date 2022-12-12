@@ -95,12 +95,14 @@ public struct PlayerData
     {
         username = name;
         password = pass;
-        playerPoints = new Dictionary<PointsType, int>()
+        
+        playerPoints = new Dictionary<PointsType, int>
         {
             {PointsType.AIR, 0},
             {PointsType.WATER, 0},
             {PointsType.LITTER, 0}
         };
+        
         FriendIds = new List<ulong>();
     }
 }
