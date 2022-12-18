@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Task : ScriptableObject
 {
-    private int playerId;
+    private ulong playerId;
     private int id;
     private string name;
-    private string type;
+    private PointsType type;
     private string status;
 
-    public void Init(int playerId, int id, string name, string type, string status)
+    public void Init(ulong playerId, int id, string name, PointsType type, string status)
     {
         this.playerId = playerId;
         this.id = id;
@@ -18,7 +18,7 @@ public class Task : ScriptableObject
         this.type = type;
         this.status = status;
     }
-    public static Task CreateInstance(int playerId, int id, string name, string type, string status)
+    public static Task CreateInstance(ulong playerId, int id, string name, PointsType type, string status)
     {
         var data = ScriptableObject.CreateInstance<Task>();
         data.Init(playerId, id, name, type, status);
@@ -51,7 +51,7 @@ public class Task : ScriptableObject
         return this.name;
     }
 
-    public string getType()
+    public PointsType getType()
     {
         return this.type;
     }
