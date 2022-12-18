@@ -1,7 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using Unity.Collections;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Multiplayer
@@ -9,9 +10,11 @@ namespace Multiplayer
     [RequireComponent(typeof(NetworkObject))]
     public class PlayerCommunicator : NetworkBehaviour
     {
-        [NonSerialized] public NetworkVariable<ulong> PlayerId = new NetworkVariable<ulong>(
+        [NonSerialized] public NetworkVariable<FixedString32Bytes> Username = new(
             writePerm: NetworkVariableWritePermission.Owner, readPerm: NetworkVariableReadPermission.Everyone);
-        [NonSerialized] public NetworkVariable<ulong> ClientId = new NetworkVariable<ulong>(
+        [NonSerialized] public NetworkVariable<ulong> PlayerId = new(
+            writePerm: NetworkVariableWritePermission.Owner, readPerm: NetworkVariableReadPermission.Everyone);
+        [NonSerialized] public NetworkVariable<ulong> ClientId = new(
             writePerm: NetworkVariableWritePermission.Owner, readPerm: NetworkVariableReadPermission.Everyone);
 
         private void Start()
@@ -21,6 +24,9 @@ namespace Multiplayer
 
         public override void OnNetworkSpawn()
         {
+            if(!IsOwner) return;
+
+            Username.Value = GameManager.Instance.GetCurrentPlayerName();
             PlayerId.Value = GameManager.Instance.CurrentPlayerId;
             ClientId.Value = NetworkManager.Singleton.LocalClientId;
         }
@@ -28,30 +34,35 @@ namespace Multiplayer
         [ContextMenu("Send message to user")]
         private void SendMessage()
         {
-            SendFriendRequestToUser(NetworkManager.ConnectedClients.Keys.Last());
+            SendFriendRequestToUser(97);
         }
     
+        /// <summary>
+        /// Send a friend request to a players PlayerCommunicator that is running only on their machine.
+        /// </summary>
         public void SendFriendRequestToUser(ulong playerId)
         {
-            IEnumerable<NetworkClient> networkClients = NetworkManager.Singleton.ConnectedClientsList.Where(client => client.PlayerObject.gameObject.GetComponent<PlayerCommunicator>().PlayerId.Value == playerId);
-            IReadOnlyList<ulong> targetIds = (IReadOnlyList<ulong>) networkClients.Select(client => client.ClientId);
+            NetworkClient networkClient = NetworkManager.Singleton.ConnectedClientsList.First(client => client.PlayerObject.gameObject.GetComponent<PlayerCommunicator>().PlayerId.Value == playerId);
+            PlayerCommunicator playerCommunicator = networkClient.PlayerObject.GetComponent<PlayerCommunicator>();
 
             var clientRpcParams = new ClientRpcParams()
             {
-                Send = new ClientRpcSendParams()
+                Send = new ClientRpcSendParams
                 {
-                    TargetClientIds = targetIds
+                    TargetClientIds = new []{ playerCommunicator.ClientId.Value }
                 }
             };
-        
-            SendFriendRequestClientRPC(clientRpcParams);
+
+            playerCommunicator.SendFriendRequestClientRPC(Username.Value, playerCommunicator.Username.Value, clientRpcParams);
         }
 
         [ClientRpc]
-        private void SendFriendRequestClientRPC(ClientRpcParams clientRpcParams = default)
+        private void SendFriendRequestClientRPC(FixedString32Bytes senderUsername, FixedString32Bytes recieverUsername, ClientRpcParams clientRpcParams = default)
         {
-            Debug.Log("Friend request sent to user with id = " + NetworkManager.LocalClientId);
-            //TODO: Connect with popups
+            Debug.Log("Friend request sent to user with name = " + recieverUsername + ", sender username = " + senderUsername);
+            Debug.Log(ClientId.Value);
+
+            
         }
     }
 }
