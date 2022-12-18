@@ -1091,6 +1091,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3395864451670042060, guid: a120acac80f73724281809e4efafb1b2, type: 3}
+      propertyPath: NetworkConfig.ConnectionApproval
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3395864451670042061, guid: a120acac80f73724281809e4efafb1b2, type: 3}
       propertyPath: m_RootOrder
       value: 4

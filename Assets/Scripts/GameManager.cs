@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Netcode;
+using Multiplayer;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
     public ulong CurrentPlayerId { get; private set; }
     public Dictionary<ulong, PlayerData> players;
 
-    public DeveloperMenu Menu;
+    public DeveloperMenu DeveloperConsole;
+    public MultiplayerManager Multiplayer;
 
     private void Awake()
     {
@@ -23,7 +24,8 @@ public class GameManager : MonoBehaviour
         else 
         { 
             Instance = this;
-            Menu = TryGetComponent(out DeveloperMenu console) ? console : gameObject.AddComponent<DeveloperMenu>();
+            DeveloperConsole = TryGetComponent(out DeveloperMenu console) ? console : gameObject.AddComponent<DeveloperMenu>();
+            Multiplayer = new MultiplayerManager(this);
             DontDestroyOnLoad(this);
         }
     }
@@ -32,7 +34,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F10))
         {
-            Menu.ToggleConsole();
+            DeveloperConsole.ToggleConsole();
         }
     }
 
@@ -42,12 +44,20 @@ public class GameManager : MonoBehaviour
         //TODO: get data from mockup file
     }
 
-    public void StartServer()
+    public void ToggleServer()
     {
-        players.Add(0, new PlayerData("server", "password"));
+        if (Multiplayer.IsServer)
+        {
+            Multiplayer.StopServer();
+            SceneManager.LoadScene("MainMenuScene");
+            return;
+        }
+        
+        if(!players.ContainsKey(0)) players.Add(0, new PlayerData("server", "password"));
         CurrentPlayerId = 0;
+        
+        Multiplayer.SetupServer();
         SceneManager.LoadScene("WorldDesign");
-        NetworkManager.Singleton.StartServer();
     }
 
     public void AddPointsToCurrentPlayer(PointsType type, int numberOfPoints)
@@ -89,7 +99,7 @@ public class GameManager : MonoBehaviour
         if (players[id].password == password)
         {
             CurrentPlayerId = id;
-            NetworkManager.Singleton.StartClient();
+            Multiplayer.StartClient();
 
             return true;
         }
@@ -106,36 +116,5 @@ public class GameManager : MonoBehaviour
             total += c[k];
         
         return (ulong)total;
-    }
-}
-
-public enum PointsType
-{
-    WATER = 0,
-    AIR = 1,
-    LITTER = 2
-}
-
-public struct PlayerData
-{
-    public string username;
-    public string password;
-
-    public Dictionary<PointsType, int> playerPoints;
-    public List<ulong> FriendIds;
-
-    public PlayerData(string name, string pass)
-    {
-        username = name;
-        password = pass;
-        
-        playerPoints = new Dictionary<PointsType, int>
-        {
-            {PointsType.AIR, 0},
-            {PointsType.WATER, 0},
-            {PointsType.LITTER, 0}
-        };
-        
-        FriendIds = new List<ulong>();
     }
 }
