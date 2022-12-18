@@ -1,14 +1,18 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(DeveloperMenu))]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
     public ulong CurrentPlayerId { get; private set; }
     public Dictionary<ulong, PlayerData> players;
+
+    public DeveloperMenu Menu;
 
     private void Awake()
     {
@@ -18,16 +22,32 @@ public class GameManager : MonoBehaviour
         } 
         else 
         { 
-            Instance = this; 
+            Instance = this;
+            Menu = TryGetComponent(out DeveloperMenu console) ? console : gameObject.AddComponent<DeveloperMenu>();
+            DontDestroyOnLoad(this);
         }
-        
-        DontDestroyOnLoad(this);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F10))
+        {
+            Menu.ToggleConsole();
+        }
     }
 
     private GameManager()
     {
         players = new Dictionary<ulong, PlayerData>();
         //TODO: get data from mockup file
+    }
+
+    public void StartServer()
+    {
+        players.Add(0, new PlayerData("server", "password"));
+        CurrentPlayerId = 0;
+        SceneManager.LoadScene("WorldDesign");
+        NetworkManager.Singleton.StartServer();
     }
 
     public void AddPointsToCurrentPlayer(PointsType type, int numberOfPoints)
@@ -65,10 +85,12 @@ public class GameManager : MonoBehaviour
     public bool LogPlayer(string username, string password)
     {
         ulong id = HashFunction(username);
-        
+
         if (players[id].password == password)
         {
             CurrentPlayerId = id;
+            NetworkManager.Singleton.StartClient();
+
             return true;
         }
 

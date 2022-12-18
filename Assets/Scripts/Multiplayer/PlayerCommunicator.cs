@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
@@ -5,6 +6,10 @@ using UnityEngine;
 [RequireComponent(typeof(NetworkObject))]
 public class PlayerCommunicator : NetworkBehaviour
 {
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
     [ContextMenu("Send message to user")]
     private void SendMessage()

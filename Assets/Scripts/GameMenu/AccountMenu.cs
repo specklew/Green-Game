@@ -31,7 +31,6 @@ public class AccountMenu : MonoBehaviour
 
 	public void CreateAccount()
 	{
-		Debug.Log("Registered player with login = " + _login + " and password = " + _password);
 		GameManager.Instance.RegisterPlayer(_login, _password);
 		//Here code for creating account
 	}	
