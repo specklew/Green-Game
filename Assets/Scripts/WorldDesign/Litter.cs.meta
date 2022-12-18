@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 6fa260439eb7c6f409276a8020b128b5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - litter_good_sprite: {fileID: 21300000, guid: 23e987f9de747284fa5cdc338b7eb8a6, type: 3}
+  - litter_medium_sprite: {fileID: 21300000, guid: d4ead47a297c77849b69c172d3327def, type: 3}
+  - litter_bad_sprite: {fileID: 21300000, guid: 26d551e3c9de9024fbd2ff894649ae55, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

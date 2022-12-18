@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 278fb1ebbabd5f74ca3dad0b268b6b45
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - air_good_sprite: {fileID: 21300000, guid: f061518cd2c58e346adc50f2d6a7ea11, type: 3}
+  - air_medium_sprite: {fileID: 21300000, guid: 13836c940f70ec8409c753e0111fef16, type: 3}
+  - air_bad_sprite: {fileID: 21300000, guid: de55795f8fd98384a804bab7d1ea092c, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

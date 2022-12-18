@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1ade3785ae462d741b3fad7a188f37ef
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - water_good_sprite: {fileID: 21300000, guid: f0fd09b48240284408ff88dbd751782d, type: 3}
+  - water_medium_sprite: {fileID: 21300000, guid: 488120174d3a22d44b276e3b20c467f3, type: 3}
+  - water_bad_sprite: {fileID: 21300000, guid: 8b0d8fa6ec3f9b94ab6af7fc6f6704f9, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

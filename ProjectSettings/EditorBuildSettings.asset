@@ -4,5 +4,23 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenuScene.unity
+    guid: 2cdf3fd20af7ec54aaa5945db25c3b0a
+  - enabled: 1
+    path: Assets/Scenes/TransportMinigame.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/PlaceGameScenesHere.unity
+    guid: 993340b4ebc905a468a11196d2f4afe3
+  - enabled: 1
+    path: Assets/Scenes/AccountMenuScene.unity
+    guid: d35242fa5456a2548ac3fb7f6b5213cf
+  - enabled: 1
+    path: Assets/Scenes/WorldDesign.unity
+    guid: 580703bf5790eec4ebd764c80b61d4b7
+  - enabled: 1
+    path: Assets/Scenes/Player Management Scene.unity
+    guid: 13f1f984b9e5c1c4ebd855014dd4ad84
   m_configObjects: {}
