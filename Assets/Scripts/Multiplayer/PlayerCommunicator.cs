@@ -57,12 +57,13 @@ namespace Multiplayer
         }
 
         [ClientRpc]
-        private void SendFriendRequestClientRPC(FixedString32Bytes senderUsername, FixedString32Bytes recieverUsername, ClientRpcParams clientRpcParams = default)
+        private void SendFriendRequestClientRPC(FixedString32Bytes senderUsername, FixedString32Bytes receiverUsername, ClientRpcParams clientRpcParams = default)
         {
-            Debug.Log("Friend request sent to user with name = " + recieverUsername + ", sender username = " + senderUsername);
+            Debug.Log("Friend request sent to user with name = " + receiverUsername + ", sender username = " + senderUsername);
             Debug.Log(ClientId.Value);
-
-            
+            //TODO: Display popup.
+            //TODO: Await popup return value.
+            //TODO: Synchronize with database.
         }
     }
 }
