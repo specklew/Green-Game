@@ -8,7 +8,9 @@ namespace Multiplayer
         public string password;
 
         public Dictionary<PointsType, int> playerPoints;
+        public Dictionary<string, string> tasksStatus;
         public List<ulong> FriendIds;
+
 
         public PlayerData(string name, string pass)
         {
@@ -21,7 +23,16 @@ namespace Multiplayer
                 {PointsType.WATER, 0},
                 {PointsType.LITTER, 0}
             };
-        
+
+            tasksStatus = new Dictionary<string, string>
+            {
+                {"RubbishMinigame", "not done"},
+                {"BrushingTeethMinigame", "not done"},
+                {"SwitchLightsMinigame", "not done"},
+                {"ShoppingMinigame", "not done"},
+                {"TransportMinigame", "not done"}
+            };
+
             FriendIds = new List<ulong>();
         }
     }

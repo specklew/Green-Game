@@ -102,7 +102,7 @@ public class ProgressPopUp : MonoBehaviour
 
         currentTaskType.text = task.getType().ToString();
         currentTaskName.text = task.getName();
-        currentTaskStatus.text = task.getStatus();
+        currentTaskStatus.text = GameManager.Instance.getTaskStatus(task.getName());
 
 
     }

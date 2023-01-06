@@ -12,7 +12,6 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private int previousDay;
     private int today;
-
     private int scoreLastDay;
 
 
