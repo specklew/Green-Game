@@ -122,6 +122,15 @@ public class GameManager : MonoBehaviour
     public void SetTaskStatus(string taskName, string status)
     {
         players[CurrentPlayerId].tasksStatus[taskName] = status;
+        
+        if (status == "done")
+        {
+            Instance.AddPointsToCurrentPlayer(PointsType.AIR, 20);
+        }
+        if (status == "failed")
+        {
+            Instance.AddPointsToCurrentPlayer(PointsType.AIR, -10);
+        }
     }
 
     public string GetTaskStatus(string taskName)
