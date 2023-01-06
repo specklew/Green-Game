@@ -119,12 +119,12 @@ public class GameManager : MonoBehaviour
     }
 
     #region functions related to task
-    public void setTaskStatus(string taskName, string status)
+    public void SetTaskStatus(string taskName, string status)
     {
         players[CurrentPlayerId].tasksStatus[taskName] = status;
     }
 
-    public string getTaskStatus(string taskName)
+    public string GetTaskStatus(string taskName)
     {
         return players[CurrentPlayerId].tasksStatus[taskName];
     }
