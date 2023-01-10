@@ -128,5 +128,6 @@ public class TransportMinigame : MonoBehaviour, IMinigame
         b4.GetComponentInChildren<TMP_Text>().text = "score: " + displayedAvailableTransport[3].PointsValue.ToString();
         b4.interactable = false;
         GameManager.Instance.AddPointsToCurrentPlayer(PointsType.AIR, EnvironmentPoints);
+        GameManager.Instance.SetTaskStatus("TransportMinigame", "done");
     }
 }

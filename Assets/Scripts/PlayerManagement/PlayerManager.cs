@@ -12,7 +12,6 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private int previousDay;
     private int today;
-
     private int scoreLastDay;
 
 
@@ -95,13 +94,32 @@ public class PlayerManager : MonoBehaviour
     {
         string[] availableTask = new string[] { "RubbishMinigame", "BrushingTeethMinigame", "SwitchLightsMinigame", "ShoppingMinigame", "TransportMinigame" };
         int NUMBER_OF_TASK = 5;
-        for (int i = 0; i < NUMBER_OF_TASK; i++)
+        int j = 0;
+
+        if (tasks.Count > 0)
         {
-            float randomNumber = Random.Range(0, 4);
-            Task currentTask = Task.CreateInstance(GameManager.Instance.CurrentPlayerId, Random.Range(0, 1000), availableTask[(int)randomNumber], (PointsType)Random.Range(0,2), "not done");
-            tasks.Add(currentTask);
-            progressPopup.setTask(i, currentTask);
+            foreach (Task task in tasks)
+            {
+                if (task.getStatus() == "failed")
+                {
+                    Task currentTask = Task.CreateInstance(GameManager.Instance.CurrentPlayerId, Random.Range(0, 1000), availableTask[j], (PointsType)Random.Range(0, 2), "not done");
+                    tasks.Add(currentTask);
+                    progressPopup.setTask(j, currentTask);
+                }
+                j += 1;
+            }
         }
+        else
+        {
+            for (int i = 0; i < NUMBER_OF_TASK; i++)
+            {
+                float randomNumber = Random.Range(0, 4);
+                Task currentTask = Task.CreateInstance(GameManager.Instance.CurrentPlayerId, Random.Range(0, 1000), availableTask[i], (PointsType)Random.Range(0, 2), "not done");
+                tasks.Add(currentTask);
+                progressPopup.setTask(i, currentTask);
+            }
+        }
+
         return tasks;
     }
 
