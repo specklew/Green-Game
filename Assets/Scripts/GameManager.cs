@@ -75,6 +75,16 @@ public class GameManager : MonoBehaviour
         return players[CurrentPlayerId].playerPoints.Sum(valuePair => valuePair.Value);
     }
 
+    public int AddCurrentPlayerGlobalScore(int numberOfPoints)
+    {
+        return players[CurrentPlayerId].globalScore["value"] += numberOfPoints;
+    }
+
+    public int GetCurrentPlayerGlobalScore()
+    {
+        return players[CurrentPlayerId].globalScore["value"];
+    }
+
     public string GetCurrentPlayerName()
     {
         return players[CurrentPlayerId].username;
@@ -125,11 +135,11 @@ public class GameManager : MonoBehaviour
         
         if (status == "done")
         {
-            Instance.AddPointsToCurrentPlayer(PointsType.AIR, 20);
+            players[CurrentPlayerId].globalScore["value"] += 20;
         }
         if (status == "failed")
         {
-            Instance.AddPointsToCurrentPlayer(PointsType.AIR, -10);
+            players[CurrentPlayerId].globalScore["value"] -= 10;
         }
     }
 

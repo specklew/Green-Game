@@ -9,6 +9,7 @@ namespace Multiplayer
 
         public Dictionary<PointsType, int> playerPoints;
         public Dictionary<string, string> tasksStatus;
+        public Dictionary<string, int> globalScore;
         public List<ulong> FriendIds;
 
 
@@ -31,6 +32,11 @@ namespace Multiplayer
                 {"SwitchLightsMinigame", "not done"},
                 {"ShoppingMinigame", "not done"},
                 {"TransportMinigame", "not done"}
+            };
+
+            globalScore = new Dictionary<string, int>
+            {
+                {"value", 0}
             };
 
             FriendIds = new List<ulong>();

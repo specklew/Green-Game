@@ -72,23 +72,17 @@ public class ProgressPopUp : MonoBehaviour
 
     public void setWaterCondition(string condition)
     {
-        // this.waterCondition.text = condition;
-        this.waterCondition.text = World.water.ToString();
+        this.waterCondition.text = GameManager.Instance.GetCurrentPlayerPointsOfType(PointsType.WATER).ToString();
     }
 
     public void setLitterCondition(string condition)
     {
-        //this.litterCondition.text = condition;
-        this.waterCondition.text = World.litter.ToString();
+        this.litterCondition.text = GameManager.Instance.GetCurrentPlayerPointsOfType(PointsType.LITTER).ToString();
     }
 
     public void setAirCondition(string condition)
     {
-       // this.airCondition.text = condition;
-        //this.waterCondition.text = World.air.ToString();
-        //this.airCondition.text = condition;
-        //this.waterCondition.text = World.air.ToString();
-        this.waterCondition.text = GameManager.Instance.GetCurrentPlayerPointsOfType(PointsType.AIR).ToString();
+        this.airCondition.text = GameManager.Instance.GetCurrentPlayerPointsOfType(PointsType.AIR).ToString();
     }
 
 
@@ -102,7 +96,7 @@ public class ProgressPopUp : MonoBehaviour
 
         currentTaskType.text = task.getType().ToString();
         currentTaskName.text = task.getName();
-        currentTaskStatus.text = GameManager.Instance.GetTaskStatus(task.getName());
+        currentTaskStatus.text = task.getStatus();
 
 
     }
