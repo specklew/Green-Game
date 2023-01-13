@@ -9,7 +9,6 @@ public interface IMinigame
     public PlayerManager? IPlayer { get; set; }
 
     public void StartMinigame();
-    public void CalculateEnvironmentPoints(MeanOfTransport chosenTransport);
 
     public static IMinigame GetTransportMinigame(PlayerManager IPlayer)
     {
