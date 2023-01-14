@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: 49dd4239f70533a4b808ef46bc34ff2c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - result: {instanceID: 0}
+  - offButton1: {fileID: 791884194307863000, guid: c0583b4e855c74b8c82e7b9b5efb5ce9, type: 3}
+  - offButton2: {instanceID: 0}
+  - offButton3: {instanceID: 0}
+  - offButton4: {instanceID: 0}
+  - bulbImage1: {fileID: 5007292073323255857, guid: 3055f7208e9d00e4fa3f8f08fb8cf7d6, type: 3}
+  - bulbImage2: {instanceID: 0}
+  - bulbImage3: {instanceID: 0}
+  - bulbImage4: {instanceID: 0}
+  - bulbImageSource1: {instanceID: 0}
+  - bulbImageSource2: {instanceID: 0}
+  - bulbImageSource3: {instanceID: 0}
+  - bulbImageSource4: {instanceID: 0}
+  - resultText: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
