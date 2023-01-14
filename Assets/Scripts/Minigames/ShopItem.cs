@@ -17,16 +17,12 @@ public class ShopItem
     private static System.Random rng = new System.Random();
     private static List<ShopItem> shopItems = new List<ShopItem>()
     {
-        //new ShopItem("Cow Milk", 1),
-        //new ShopItem("Oat Milk", 3),
-        //new ShopItem("Salmon", 0),
-        //new ShopItem("Beef", 0),
-        new ShopItem("item1", 1),
-        new ShopItem("item2", 2),
-        new ShopItem("item3", 3),
-        new ShopItem("item01", -1),
-        new ShopItem("item02", -2),
-        new ShopItem("item03", -3),
+        new ShopItem("Beef", -3),
+        new ShopItem("Salmon", -2),
+        new ShopItem("Cow Milk", -1),
+        new ShopItem("Rice", 1),
+        new ShopItem("Oat Milk", 2),
+        new ShopItem("Fruits", 3)
     };
 
     public static List<ShopItem> GenerateRandomItems()

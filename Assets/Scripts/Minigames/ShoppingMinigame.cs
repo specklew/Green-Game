@@ -17,12 +17,14 @@ public class ShoppingMinigame : MonoBehaviour, IMinigame
     public GameObject item5;
     public GameObject item6;
     public GameObject result;
+    public GameObject summary;
     public GameObject button1;
     public GameObject button2;
     public GameObject button3;
     public GameObject button4;
     public GameObject button5;
     public GameObject button6;
+    public GameObject buyButton;
 
     public TextMeshProUGUI text1;
     public TextMeshProUGUI text2;
@@ -31,6 +33,7 @@ public class ShoppingMinigame : MonoBehaviour, IMinigame
     public TextMeshProUGUI text5;
     public TextMeshProUGUI text6;
     public TextMeshProUGUI resultText;
+    public TextMeshProUGUI summaryText;
 
     #endregion
 
@@ -40,6 +43,8 @@ public class ShoppingMinigame : MonoBehaviour, IMinigame
 
     private List<ShopItem> shopItems;
     private bool[] selectedItems;
+    private int maxItems;
+    private int currentItems;
 
     public ShoppingMinigame(PlayerManager playerManager)
     {
@@ -71,15 +76,27 @@ public class ShoppingMinigame : MonoBehaviour, IMinigame
     public void StartMinigame()
     {
         resultText = result.GetComponent<TextMeshProUGUI>();
+        summaryText = summary.GetComponent<TextMeshProUGUI>();
         text1 = item1.GetComponent<TextMeshProUGUI>();
         text2 = item2.GetComponent<TextMeshProUGUI>();
         text3 = item3.GetComponent<TextMeshProUGUI>();
         text4 = item4.GetComponent<TextMeshProUGUI>();
         text5 = item5.GetComponent<TextMeshProUGUI>();
         text6 = item6.GetComponent<TextMeshProUGUI>();
+        var bb = buyButton.GetComponent<Button>();
+        bb.interactable = false;
 
+        var rng = new System.Random();
+        maxItems = rng.Next(1, 5);
+        summaryText.text = GenerateSummaryString(maxItems, 0);
         resultText.text = "";
         DisplayShoppingList();    
+    }
+
+    public string GenerateSummaryString(int max, int current)
+    {
+        if(max == 1) return "Your shopping list may contain 1 item (" + (max - current) + " remaining)";
+        return "Your shopping list may contain " + max + " items (" + (max - current) + " remaining)";
     }
 
     public void CalculateEnvironmentPoints()
@@ -112,6 +129,7 @@ public class ShoppingMinigame : MonoBehaviour, IMinigame
             button.GetComponentInChildren<TMP_Text>().text = "ADD";
             text1.color = Color.white;
         }
+        UpdateList();
     }
 
     public void I2ButtonOnClick()
@@ -129,6 +147,7 @@ public class ShoppingMinigame : MonoBehaviour, IMinigame
             button.GetComponentInChildren<TMP_Text>().text = "ADD";
             text2.color = Color.white;
         }
+        UpdateList();
     }
 
     public void I3ButtonOnClick()
@@ -146,6 +165,7 @@ public class ShoppingMinigame : MonoBehaviour, IMinigame
             button.GetComponentInChildren<TMP_Text>().text = "ADD";
             text3.color = Color.white;
         }
+        UpdateList();
     }
 
     public void I4ButtonOnClick()
@@ -163,6 +183,7 @@ public class ShoppingMinigame : MonoBehaviour, IMinigame
             button.GetComponentInChildren<TMP_Text>().text = "ADD";
             text4.color = Color.white;
         }
+        UpdateList();
     }
 
     public void I5ButtonOnClick()
@@ -180,6 +201,7 @@ public class ShoppingMinigame : MonoBehaviour, IMinigame
             button.GetComponentInChildren<TMP_Text>().text = "ADD";
             text5.color = Color.white;
         }
+        UpdateList();
     }
 
     public void I6ButtonOnClick()
@@ -196,6 +218,44 @@ public class ShoppingMinigame : MonoBehaviour, IMinigame
         {
             button.GetComponentInChildren<TMP_Text>().text = "ADD";
             text6.color = Color.white;
+        }
+        UpdateList();
+    }
+
+    public void UpdateList()
+    {
+        var buttons = new Button[6];
+        buttons[0] = button1.GetComponent<Button>();
+        buttons[1] = button2.GetComponent<Button>();
+        buttons[2] = button3.GetComponent<Button>();
+        buttons[3] = button4.GetComponent<Button>();
+        buttons[4] = button5.GetComponent<Button>();
+        buttons[5] = button6.GetComponent<Button>();
+
+
+        currentItems = 0;
+        for(int i = 0; i < 6; i++)
+        {
+            if(selectedItems[i]) currentItems++;
+        }
+        summaryText.text = GenerateSummaryString(maxItems, currentItems);
+        if (currentItems < maxItems)
+        {
+            for(int i = 0; i < 6; i++)
+            {
+                buttons[i].interactable = true;
+            }
+            var bb = buyButton.GetComponent<Button>();
+            bb.interactable = false;
+        }
+        else
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                if(!selectedItems[i]) buttons[i].interactable = false;
+            }
+            var bb = buyButton.GetComponent<Button>();
+            bb.interactable = true;
         }
     }
 
