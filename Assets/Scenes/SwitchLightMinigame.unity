@@ -2781,14 +2781,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   result: {fileID: 1097501170}
-  offButton1: {fileID: 0}
-  offButton2: {fileID: 0}
-  offButton3: {fileID: 0}
-  offButton4: {fileID: 0}
-  bulbImage1: {fileID: 0}
-  bulbImage2: {fileID: 0}
-  bulbImage3: {fileID: 0}
-  bulbImage4: {fileID: 0}
+  offButton1: {fileID: 388067717}
+  offButton2: {fileID: 2084135204}
+  offButton3: {fileID: 137843210}
+  offButton4: {fileID: 1909316419}
+  bulbImage1: {fileID: 1639665018}
+  bulbImage2: {fileID: 92023541}
+  bulbImage3: {fileID: 26280345}
+  bulbImage4: {fileID: 601719479}
   bulbImageSource1: {fileID: 0}
   bulbImageSource2: {fileID: 0}
   bulbImageSource3: {fileID: 0}
