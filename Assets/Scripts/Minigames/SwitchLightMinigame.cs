@@ -21,11 +21,13 @@ public class SwitchLightMinigame : MonoBehaviour, IMinigame
     public GameObject bulbImage2;
     public GameObject bulbImage3;
     public GameObject bulbImage4;
+    public GameObject button;
 
     public Image bulbImageSource1;
     public Image bulbImageSource2;
     public Image bulbImageSource3;
     public Image bulbImageSource4;
+    public Button doneButton;
 
     public TextMeshProUGUI resultText;
 
@@ -55,12 +57,13 @@ public class SwitchLightMinigame : MonoBehaviour, IMinigame
 
     public void Update()
     {
-        //Not necessary to update the text fields stopwatch.Stop();
+
     }
 
     public void StartMinigame()
     {
         stopwatch = new Stopwatch();
+        stopwatch.Start();
 
         bulbImageSource1 = bulbImage1.GetComponent<Image>();
         bulbImageSource2 = bulbImage2.GetComponent<Image>();
@@ -71,6 +74,8 @@ public class SwitchLightMinigame : MonoBehaviour, IMinigame
         bulbImageSource2.sprite = bulbOn;
         bulbImageSource3.sprite = bulbOn;
         bulbImageSource4.sprite = bulbOn;
+
+        //doneButton = button.GetCompoment<Button>();
 
         resultText = result.GetComponent<TextMeshProUGUI>();
         resultText.text = "";   
@@ -96,9 +101,42 @@ public class SwitchLightMinigame : MonoBehaviour, IMinigame
         bulbImageSource4.sprite = bulbOff;
     }
 
+    public void DoneButton()
+    {
+        if (bulbImageSource1.sprite == bulbOn ||
+            bulbImageSource2.sprite == bulbOn ||
+            bulbImageSource3.sprite == bulbOn ||
+            bulbImageSource4.sprite == bulbOn)
+        {
+            return;
+        }
+
+        stopwatch.Stop();
+        CalculateEnvironmentPoints();
+        //doneButton.gameObject.SetActive(false);
+        resultText.text = $"Your time: {seconds}s, your environment points: {EnvironmentPoints}";
+    }
+
     public void CalculateEnvironmentPoints()
     {
         seconds = (int) Math.Round(stopwatch.Elapsed.TotalSeconds, 0);
+        
+        if (seconds < 3)
+        {
+            EnvironmentPoints = 3;
+        }
+        else if (seconds >= 3 && seconds <= 5)
+        {
+            EnvironmentPoints = 2;
+        }
+        else if (seconds > 5 && seconds < 7)
+        {
+            EnvironmentPoints = 1;
+        }
+        else
+        {
+            EnvironmentPoints = 0;
+        }
     }
 
     public void MorbButtons()
@@ -107,7 +145,13 @@ public class SwitchLightMinigame : MonoBehaviour, IMinigame
         var b1 = offButton1.GetComponent<Button>();
         b1.interactable = false;
 
-        var b2 = offButton3.GetComponent<Button>();
+        var b2 = offButton2.GetComponent<Button>();
+        b2.interactable = false;
+
+        var b3 = offButton3.GetComponent<Button>();
+        b2.interactable = false;
+
+        var b4 = offButton4.GetComponent<Button>();
         b2.interactable = false;
     }
 }
