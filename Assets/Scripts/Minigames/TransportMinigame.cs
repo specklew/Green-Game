@@ -48,6 +48,7 @@ public class TransportMinigame : MonoBehaviour, IMinigame
     public void Update()
     {
         //Not necessary to update the text fields
+        //Why not delete it if it's not necessary?
     }
 
     public void DisplayListOfAvailableTransport()
@@ -127,6 +128,8 @@ public class TransportMinigame : MonoBehaviour, IMinigame
         var b4 = button4.GetComponent<Button>();
         b4.GetComponentInChildren<TMP_Text>().text = "score: " + displayedAvailableTransport[3].PointsValue.ToString();
         b4.interactable = false;
+        
+        //Need a way to add EnvironmentPoints to a selected player, not only yhe current player. 
         GameManager.Instance.AddPointsToCurrentPlayer(PointsType.AIR, EnvironmentPoints);
         GameManager.Instance.SetTaskStatus("TransportMinigame", "done");
     }

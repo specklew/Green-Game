@@ -1,12 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
-public class PopUpInvitation : MonoBehaviour
+public class PopUpHelpRequest : MonoBehaviour
 {
     public GameObject panel;
     public Button acceptButton;
@@ -23,10 +21,10 @@ public class PopUpInvitation : MonoBehaviour
         declineButton.onClick.AddListener(DeclineInvitation);
     }
 
-    public async Task<bool> ShowInvitation(string username)
+    public async Task<bool> ShowHelpRequest(string username)
     {
         inviterName = username;
-        inviteText.text = inviterName + " has invited you";
+        inviteText.text = inviterName + " has requested you to help.";
         panel.SetActive(true);
         while (!buttonClicked)
         {
@@ -38,7 +36,6 @@ public class PopUpInvitation : MonoBehaviour
 
     void AcceptInvitation()
     {
-        // Add your code here to handle the acceptance of the invitation
         buttonClicked = true;
         result = true;
         panel.SetActive(false);
@@ -46,7 +43,6 @@ public class PopUpInvitation : MonoBehaviour
 
     void DeclineInvitation()
     {
-        // Add your code here to handle the decline of the invitation
         buttonClicked = true;
         result = false;
         panel.SetActive(false);
