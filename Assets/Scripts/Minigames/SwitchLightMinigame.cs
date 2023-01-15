@@ -32,7 +32,6 @@ public class SwitchLightMinigame : MonoBehaviour, IMinigame
     public GameObject offButton5;
     public GameObject offButton6;
     public GameObject result;
-    public GameObject doneButton;
 
     public Image bulbImageSource1;
     public Image bulbImageSource2;
@@ -43,7 +42,6 @@ public class SwitchLightMinigame : MonoBehaviour, IMinigame
 
     public TextMeshProUGUI descriptionText;
     public TextMeshProUGUI resultText;
-    public Button button;
 
     private Sprite bulbOn;
     private Sprite bulbOff;
@@ -118,7 +116,6 @@ public class SwitchLightMinigame : MonoBehaviour, IMinigame
 
         descriptionText = description.GetComponent<TextMeshProUGUI>();
         resultText = result.GetComponent<TextMeshProUGUI>();
-        button = doneButton.GetComponent<Button>();
 
         descriptionText.text += (bulbOnIndex1 + 1).ToString() + " and nr " + (bulbOnIndex2 + 1).ToString();
         resultText.text = "";   
@@ -127,65 +124,76 @@ public class SwitchLightMinigame : MonoBehaviour, IMinigame
     public void TurnOnBulb1()
     {
         bulbImageSource1.sprite = bulbOn;
+        FinishGameIfEndConditionIsMet();
     }
 
     public void TurnOnBulb2()
     {
         bulbImageSource2.sprite = bulbOn;
+        FinishGameIfEndConditionIsMet();
     }
 
     public void TurnOnBulb3()
     {
         bulbImageSource3.sprite = bulbOn;
+        FinishGameIfEndConditionIsMet();
     }
 
     public void TurnOnBulb4()
     {
         bulbImageSource4.sprite = bulbOn;
+        FinishGameIfEndConditionIsMet();
     }
 
     public void TurnOnBulb5()
     {
         bulbImageSource5.sprite = bulbOn;
+        FinishGameIfEndConditionIsMet();
     }
 
     public void TurnOnBulb6()
     {
         bulbImageSource6.sprite = bulbOn;
+        FinishGameIfEndConditionIsMet();
     }
 
     public void TurnOffBulb1()
     {
         bulbImageSource1.sprite = bulbOff;
+        FinishGameIfEndConditionIsMet();
     }
 
     public void TurnOffBulb2()
     {
         bulbImageSource2.sprite = bulbOff;
+        FinishGameIfEndConditionIsMet();
     }
 
     public void TurnOffBulb3()
     {
         bulbImageSource3.sprite = bulbOff;
+        FinishGameIfEndConditionIsMet();
     }
 
     public void TurnOffBulb4()
     {
         bulbImageSource4.sprite = bulbOff;
+        FinishGameIfEndConditionIsMet();
     }
 
     public void TurnOffBulb5()
     {
         bulbImageSource5.sprite = bulbOff;
+        FinishGameIfEndConditionIsMet();
     }
 
     public void TurnOffBulb6()
     {
         bulbImageSource6.sprite = bulbOff;
+        FinishGameIfEndConditionIsMet();
     }
 
-
-    public void OnDoneButtonClick()
+    public void FinishGameIfEndConditionIsMet()
     {
         for (int i = 0; i < bulbs.Count; i++)
         {
@@ -208,8 +216,6 @@ public class SwitchLightMinigame : MonoBehaviour, IMinigame
         stopwatch.Stop();
         CalculateEnvironmentPoints();
 
-        doneButton.gameObject.SetActive(false);
-
         onButton1.gameObject.SetActive(false);
         onButton2.gameObject.SetActive(false);
         onButton3.gameObject.SetActive(false);
@@ -231,15 +237,15 @@ public class SwitchLightMinigame : MonoBehaviour, IMinigame
     {
         seconds = (int) Math.Round(stopwatch.Elapsed.TotalSeconds, 0);
         
-        if (seconds < 7)
+        if (seconds < 6)
         {
             EnvironmentPoints = 3;
         }
-        else if (seconds >= 7 && seconds <= 10)
+        else if (seconds >= 6 && seconds <= 9)
         {
             EnvironmentPoints = 2;
         }
-        else if (seconds > 10 && seconds < 16)
+        else if (seconds > 9 && seconds < 15)
         {
             EnvironmentPoints = 1;
         }

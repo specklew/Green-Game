@@ -2429,7 +2429,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.8000002, y: -124.30001}
+  m_AnchoredPosition: {x: 3.8000002, y: -94.3}
   m_SizeDelta: {x: 859.6, y: 52.7287}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1128283707
@@ -3227,7 +3227,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1952470870}
         m_TargetAssemblyTypeName: SwitchLightMinigame, Assembly-CSharp
-        m_MethodName: DoneButton
+        m_MethodName: OnDoneButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4829,12 +4829,12 @@ MonoBehaviour:
   bulbImage4: {fileID: 601719479}
   bulbImage5: {fileID: 2114652078}
   bulbImage6: {fileID: 1848648654}
-  onButton1: {fileID: 0}
-  onButton2: {fileID: 0}
-  onButton3: {fileID: 0}
-  onButton4: {fileID: 0}
-  onButton5: {fileID: 0}
-  onButton6: {fileID: 0}
+  onButton1: {fileID: 962017061}
+  onButton2: {fileID: 1076229497}
+  onButton3: {fileID: 1228375310}
+  onButton4: {fileID: 1581460}
+  onButton5: {fileID: 1695081524}
+  onButton6: {fileID: 646604297}
   offButton1: {fileID: 313410173}
   offButton2: {fileID: 2084135204}
   offButton3: {fileID: 137843210}

@@ -27,6 +27,14 @@ public class RecyclingMinigame : MonoBehaviour, IMinigame
     public GameObject container2;
     public GameObject container3;
     public GameObject container4;
+    public GameObject correctIcon1;
+    public GameObject correctIcon2;
+    public GameObject correctIcon3;
+    public GameObject correctIcon4;
+    public GameObject incorrectIcon1;
+    public GameObject incorrectIcon2;
+    public GameObject incorrectIcon3;
+    public GameObject incorrectIcon4;
 
     public Image rubbishImage1;
     public Image rubbishImage2;
@@ -44,6 +52,14 @@ public class RecyclingMinigame : MonoBehaviour, IMinigame
     public Image rubbishContainerImage2;
     public Image rubbishContainerImage3;
     public Image rubbishContainerImage4;
+    public Image correctIconImage1;
+    public Image correctIconImage2;
+    public Image correctIconImage3;
+    public Image correctIconImage4;
+    public Image incorrectIconImage1;
+    public Image incorrectIconImage2;
+    public Image incorrectIconImage3;
+    public Image incorrectIconImage4;
 
     public TextMeshProUGUI resultText;
 
@@ -107,6 +123,16 @@ public class RecyclingMinigame : MonoBehaviour, IMinigame
         rubbishContainerImage3 = container3.GetComponent<Image>();
         rubbishContainerImage4 = container4.GetComponent<Image>();
 
+        correctIconImage1 = correctIcon1.GetComponent<Image>();
+        correctIconImage2 = correctIcon2.GetComponent<Image>();
+        correctIconImage3 = correctIcon3.GetComponent<Image>();
+        correctIconImage4 = correctIcon4.GetComponent<Image>();
+
+        incorrectIconImage1 = incorrectIcon1.GetComponent<Image>();
+        incorrectIconImage2 = incorrectIcon2.GetComponent<Image>();
+        incorrectIconImage3 = incorrectIcon3.GetComponent<Image>();
+        incorrectIconImage4 = incorrectIcon4.GetComponent<Image>();
+
         rubbishList.Add(new KeyValuePair<Rubbish, Image>(rubbishObj1, rubbishImage1));
         rubbishList.Add(new KeyValuePair<Rubbish, Image>(rubbishObj2, rubbishImage2));
         rubbishList.Add(new KeyValuePair<Rubbish, Image>(rubbishObj3, rubbishImage3));
@@ -133,6 +159,13 @@ public class RecyclingMinigame : MonoBehaviour, IMinigame
         if (currentRubbish.Key.ContainerColor == "brown")
         {
             correctAnswers++;
+            correctIconImage1.gameObject.SetActive(true);
+            StartCoroutine(DisableObjectAfterSeconds(correctIconImage1, 1));
+        }
+        else
+        {
+            incorrectIconImage1.gameObject.SetActive(true);
+            StartCoroutine(DisableObjectAfterSeconds(incorrectIconImage1, 1));
         }
 
         rubbishList[0].Value.gameObject.SetActive(false);
@@ -140,13 +173,13 @@ public class RecyclingMinigame : MonoBehaviour, IMinigame
         if (rubbishList.Count > 1)
         {
             rubbishList.RemoveAt(0);
+            currentRubbish = rubbishList[0];
             rubbishList[0].Value.gameObject.SetActive(true);
         } 
         else
         {
-
+            CalculateEnvironmentPoints();
         }
-
     }
 
     public void OnGreenContainerClick()
@@ -154,6 +187,13 @@ public class RecyclingMinigame : MonoBehaviour, IMinigame
         if (currentRubbish.Key.ContainerColor == "green")
         {
             correctAnswers++;
+            correctIconImage2.gameObject.SetActive(true);
+            StartCoroutine(DisableObjectAfterSeconds(correctIconImage2, 1));
+        }
+        else
+        {
+            incorrectIconImage2.gameObject.SetActive(true);
+            StartCoroutine(DisableObjectAfterSeconds(incorrectIconImage2, 1));
         }
 
         rubbishList[0].Value.gameObject.SetActive(false);
@@ -161,11 +201,12 @@ public class RecyclingMinigame : MonoBehaviour, IMinigame
         if (rubbishList.Count > 1)
         {
             rubbishList.RemoveAt(0);
+            currentRubbish = rubbishList[0];
             rubbishList[0].Value.gameObject.SetActive(true);
         }
         else
         {
-
+            CalculateEnvironmentPoints();
         }
     }
 
@@ -174,6 +215,13 @@ public class RecyclingMinigame : MonoBehaviour, IMinigame
         if (currentRubbish.Key.ContainerColor == "blue")
         {
             correctAnswers++;
+            correctIconImage3.gameObject.SetActive(true);
+            StartCoroutine(DisableObjectAfterSeconds(correctIconImage3, 1));
+        }
+        else
+        {
+            incorrectIconImage3.gameObject.SetActive(true);
+            StartCoroutine(DisableObjectAfterSeconds(incorrectIconImage3, 1));
         }
 
         rubbishList[0].Value.gameObject.SetActive(false);
@@ -181,11 +229,12 @@ public class RecyclingMinigame : MonoBehaviour, IMinigame
         if (rubbishList.Count > 1)
         {
             rubbishList.RemoveAt(0);
+            currentRubbish = rubbishList[0];
             rubbishList[0].Value.gameObject.SetActive(true);
         }
         else
         {
-
+            CalculateEnvironmentPoints();
         }
     }
 
@@ -194,6 +243,13 @@ public class RecyclingMinigame : MonoBehaviour, IMinigame
         if (currentRubbish.Key.ContainerColor == "yellow")
         {
             correctAnswers++;
+            correctIconImage4.gameObject.SetActive(true);
+            StartCoroutine(DisableObjectAfterSeconds(correctIconImage4, 1));
+        }
+        else
+        {
+            incorrectIconImage4.gameObject.SetActive(true);
+            StartCoroutine(DisableObjectAfterSeconds(incorrectIconImage4, 1));
         }
 
         rubbishList[0].Value.gameObject.SetActive(false);
@@ -201,17 +257,24 @@ public class RecyclingMinigame : MonoBehaviour, IMinigame
         if (rubbishList.Count > 1)
         {
             rubbishList.RemoveAt(0);
+            currentRubbish = rubbishList[0];
             rubbishList[0].Value.gameObject.SetActive(true);
         }
         else
         {
-
+            CalculateEnvironmentPoints();
         }
     }
 
     public void CalculateEnvironmentPoints()
     {
-        /*EnvironmentPoints = chosenTransport.PointsValue;
-        resultText.text = "You selected " + chosenTransport.Name + ", Your score: " + EnvironmentPoints.ToString();*/
+        EnvironmentPoints = correctAnswers / 4;
+        resultText.text = $"Correct answers: {correctAnswers}/12, environment points: {EnvironmentPoints}";
+    }
+
+    IEnumerator DisableObjectAfterSeconds(Image image, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        image.gameObject.SetActive(false);
     }
 }
