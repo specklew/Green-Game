@@ -880,8 +880,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1291929886}
-        m_TargetAssemblyTypeName: Play_button_script, Assembly-CSharp
+      - m_Target: {fileID: 1291929892}
+        m_TargetAssemblyTypeName: Brush_button_script, Assembly-CSharp
         m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:
@@ -1228,8 +1228,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1291929886}
-        m_TargetAssemblyTypeName: Play_button_script, Assembly-CSharp
+      - m_Target: {fileID: 1291929891}
+        m_TargetAssemblyTypeName: Recyclingg_button_script, Assembly-CSharp
         m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:
@@ -2144,6 +2144,9 @@ GameObject:
   - component: {fileID: 1291929885}
   - component: {fileID: 1291929888}
   - component: {fileID: 1291929889}
+  - component: {fileID: 1291929892}
+  - component: {fileID: 1291929891}
+  - component: {fileID: 1291929890}
   m_Layer: 0
   m_Name: Main
   m_TagString: Untagged
@@ -2214,6 +2217,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d33a5ad37fa740444a5b9555a4c7c53d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1291929890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291929884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c45f41593cc20479f36a2625b76bc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1291929891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291929884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e87f419d0c936964599c74503dfae3a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1291929892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291929884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f31185eed94c38439a4861ed65c267a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1507288852
@@ -2527,8 +2566,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1291929886}
-        m_TargetAssemblyTypeName: Play_button_script, Assembly-CSharp
+      - m_Target: {fileID: 1291929890}
+        m_TargetAssemblyTypeName: Shopping_button_script, Assembly-CSharp
         m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:
