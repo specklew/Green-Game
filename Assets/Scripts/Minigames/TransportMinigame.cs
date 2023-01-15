@@ -31,8 +31,14 @@ public class TransportMinigame : MonoBehaviour, IMinigame
 
     public bool IsCompleted { get; set; }
     public int EnvironmentPoints { get; set; }
+    public PlayerManager? IPlayer { get; set; } = null;
 
     private List<MeanOfTransport> displayedAvailableTransport;
+
+    public TransportMinigame(PlayerManager playerManager)
+    {
+        this.IPlayer = playerManager;
+    }
 
     public void Start()
     {
@@ -67,7 +73,7 @@ public class TransportMinigame : MonoBehaviour, IMinigame
 
     public void CalculateEnvironmentPoints(MeanOfTransport chosenTransport)
     {
-        EnvironmentPoints = chosenTransport.PointsValue;
+        EnvironmentPoints = chosenTransport.PointsValue;                    //property of IPlayer should be accessed here to store the points, such property does not exist yet
         resultText.text = "You selected " + chosenTransport.Name + ", Your score: " + EnvironmentPoints.ToString();
     }
 
