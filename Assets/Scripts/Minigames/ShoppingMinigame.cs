@@ -40,6 +40,7 @@ public class ShoppingMinigame : MonoBehaviour, IMinigame
     public bool IsCompleted { get; set; }
     public int EnvironmentPoints { get; set; }
     public PlayerManager? IPlayer { get; set; } = null;
+    public ulong PlayerId { get; set; }
 
     private List<ShopItem> shopItems;
     private bool[] selectedItems;

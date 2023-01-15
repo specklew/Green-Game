@@ -32,6 +32,8 @@ public class TransportMinigame : MonoBehaviour, IMinigame
     public bool IsCompleted { get; set; }
     public int EnvironmentPoints { get; set; }
     public PlayerManager? IPlayer { get; set; } = null;
+    
+    public ulong PlayerId { get; set; }
 
     private List<MeanOfTransport> displayedAvailableTransport;
 
@@ -129,8 +131,8 @@ public class TransportMinigame : MonoBehaviour, IMinigame
         b4.GetComponentInChildren<TMP_Text>().text = "score: " + displayedAvailableTransport[3].PointsValue.ToString();
         b4.interactable = false;
         
-        //Need a way to add EnvironmentPoints to a selected player, not only yhe current player. 
-        GameManager.Instance.AddPointsToCurrentPlayer(PointsType.AIR, EnvironmentPoints);
-        GameManager.Instance.SetTaskStatus("TransportMinigame", "done");
+        //Need to extract this functionality to a separate method to avoid code repetition.
+        GameManager.Instance.AddPointsToPlayer(PlayerId, PointsType.AIR, EnvironmentPoints);
+        GameManager.Instance.SetTaskStatus("TransportMinigame", "done", PlayerId);
     }
 }

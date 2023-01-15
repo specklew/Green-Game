@@ -39,6 +39,7 @@ public class RecyclingMinigame : MonoBehaviour, IMinigame
     public bool IsCompleted { get; set; }
     public int EnvironmentPoints { get; set; }
     public PlayerManager? IPlayer { get; set; } = null;
+    public ulong PlayerId { get; set; }
 
     public RecyclingMinigame(PlayerManager playerManager)
     {

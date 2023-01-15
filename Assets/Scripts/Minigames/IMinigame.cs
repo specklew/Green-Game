@@ -7,6 +7,7 @@ public interface IMinigame
     public bool IsCompleted { get; set; }
     public int EnvironmentPoints { get; set; }
     public PlayerManager? IPlayer { get; set; }
+    public ulong PlayerId { get; set;}
 
     public void StartMinigame();
 

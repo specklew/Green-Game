@@ -98,17 +98,43 @@ namespace Multiplayer
         /// <param name="type">The type of points that the player will be given.</param>
         /// <param name="numberOfPoints">Number of points added.</param>
         [ServerRpc(RequireOwnership = false)]
-        public void AddPointsToPlayerServerRPC(PointsType type, int numberOfPoints)
+        public void AddPointsToPlayerServerRPC(PointsType type, int numberOfPoints, ulong playerId = default)
         {
+            if (playerId == default) playerId = PlayerId.Value;
+            NetworkClient networkClient = NetworkManager.Singleton.ConnectedClientsList.First(client => client.PlayerObject.gameObject.GetComponent<PlayerCommunicator>().PlayerId.Value == playerId);
+            PlayerCommunicator playerCommunicator = networkClient.PlayerObject.GetComponent<PlayerCommunicator>();
             var clientRpcParams = new ClientRpcParams()
             {
                 Send = new ClientRpcSendParams
                 {
-                    TargetClientIds = new []{ PlayerId.Value }
+                    TargetClientIds = new []{ playerCommunicator.ClientId.Value }
                 }
             };
 
             AddPointsToPlayerClientRPC(type, numberOfPoints, clientRpcParams);
+        }
+        
+        /// <summary>
+        /// Sets the specified players task status.
+        /// </summary>
+        /// <param name="taskName">The name of the task.</param>
+        /// <param name="status">Status which the task will be set to.</param>
+        /// <param name="playerId">Id of the player that has the task.</param>
+        [ServerRpc(RequireOwnership = false)]
+        public void SetPlayerTaskStatusServerRPC(string taskName, string status, ulong playerId = default)
+        {
+            if (playerId == default) playerId = PlayerId.Value;
+            NetworkClient networkClient = NetworkManager.Singleton.ConnectedClientsList.First(client => client.PlayerObject.gameObject.GetComponent<PlayerCommunicator>().PlayerId.Value == playerId);
+            PlayerCommunicator playerCommunicator = networkClient.PlayerObject.GetComponent<PlayerCommunicator>();
+            var clientRpcParams = new ClientRpcParams()
+            {
+                Send = new ClientRpcSendParams
+                {
+                    TargetClientIds = new []{ playerCommunicator.ClientId.Value }
+                }
+            };
+
+            SetPlayerTaskStatusClientRPC(taskName, status, clientRpcParams);
         }
 
         private async void WaitForUserFriendRequestResponse(string username, ulong playerId)
@@ -129,7 +155,7 @@ namespace Multiplayer
             
             if (!task.Result) return;
             
-            GameManager.Instance.AddFriendToCurrentPlayer(playerId);
+            GameManager.Instance.LoadMinigame("TransportMinigame" ,playerId);
             Debug.Log("Help request accepted from user = " + username);
         }
 
@@ -152,9 +178,13 @@ namespace Multiplayer
         {
             Debug.Log("Added points to player = " + Username.Value + " points = " + numberOfPoints + " of type " + type);
             GameManager.Instance.AddPointsToCurrentPlayer(type, numberOfPoints);
-            //TODO: Display popup.
-            //TODO: Await popup return value.
-            //TODO: Synchronize with database.
+        }
+        
+        [ClientRpc]
+        private void SetPlayerTaskStatusClientRPC(string taskName, string status, ClientRpcParams clientRpcParams = default)
+        {
+            Debug.Log("Set players = " + Username.Value + " task = " + taskName + " to status = " + status);
+            GameManager.Instance.SetCurrentPlayerTaskStatus(taskName, status);
         }
     }
 }
