@@ -94,8 +94,7 @@ public class BrushingTeethMinigame : MonoBehaviour, IMinigame
         var b2 = button2.GetComponent<Button>();
         b2.interactable = false;
 
-        //uncomment this when integrated with game manager
-        //GameManager.Instance.AddPointsToCurrentPlayer(PointsType.AIR, EnvironmentPoints);
-        //GameManager.Instance.SetTaskStatus("BrushingTeethMinigame", "done");
+        GameManager.Instance.AddPointsToPlayer(PlayerId, PointsType.WATER, EnvironmentPoints);
+        GameManager.Instance.SetTaskStatus("BrushingTeethMinigame", "done", PlayerId);
     }
 }

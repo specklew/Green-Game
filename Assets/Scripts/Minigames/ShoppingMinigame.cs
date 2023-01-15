@@ -287,8 +287,7 @@ public class ShoppingMinigame : MonoBehaviour, IMinigame
         b6.GetComponentInChildren<TMP_Text>().text = "score: " + shopItems[5].PointsValue.ToString();
         b6.interactable = false;
 
-        //uncomment this when integrated with game manager
-        //GameManager.Instance.AddPointsToCurrentPlayer(PointsType.AIR, EnvironmentPoints);
-        //GameManager.Instance.SetTaskStatus("ShoppingMinigame", "done");
+        GameManager.Instance.AddPointsToPlayer(PlayerId, PointsType.AIR, EnvironmentPoints);
+        GameManager.Instance.SetTaskStatus("ShoppingMinigame", "done", PlayerId);
     }
 }
