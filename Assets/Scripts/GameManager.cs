@@ -1,7 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Multiplayer;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -68,12 +70,12 @@ public class GameManager : MonoBehaviour
 
     public void AddPointsToPlayer(ulong playerId, PointsType type, int numberOfPoints)
     {
-        GetPlayerNetworkCommunicator(playerId).AddPointsToPlayerServerRPC(type, numberOfPoints);
+        GetPlayerNetworkCommunicator(playerId).AddPointsToPlayerServerRPC(type, numberOfPoints, playerId);
     }
 
     public PlayerCommunicator GetPlayerNetworkCommunicator(ulong playerId)
     {
-        return NetworkManager.Singleton.ConnectedClients[playerId].PlayerObject.GetComponent<PlayerCommunicator>();
+        return FindObjectsOfType<PlayerCommunicator>().First(communicator => communicator.PlayerId.Value == playerId);
     }
 
     public int GetCurrentPlayerPointsOfType(PointsType type)
@@ -104,6 +106,30 @@ public class GameManager : MonoBehaviour
     public void AddFriendToCurrentPlayer(ulong friendId)
     {
         players[CurrentPlayerId].FriendIds.Add(friendId);
+    }
+    
+    /// <summary>
+    /// Loads additively the specified minigame scene into the current player view.
+    /// </summary>
+    /// <param name="minigameName">The name of the minigame scene that should be loaded.</param>
+    /// <param name="playerId">Id of the player that should receive points for the completion of the minigame.</param>
+    public void LoadMinigame(string minigameName, ulong playerId = default)
+    {
+        if (playerId == default) playerId = CurrentPlayerId;
+        StartCoroutine(LoadMinigameCoroutine(minigameName, playerId));
+    }
+    
+    private IEnumerator LoadMinigameCoroutine(string minigameName, ulong playerId)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(minigameName, LoadSceneMode.Single);
+
+        while (!asyncLoad.isDone)
+        {
+            yield return new WaitForNextFrameUnit();
+        }
+        
+        IEnumerable<IMinigame> minigames = FindObjectsOfType<MonoBehaviour>().OfType<IMinigame>();
+        minigames.First().PlayerId = playerId;
     }
 
     public void RegisterPlayer(string username, string password)
@@ -140,7 +166,13 @@ public class GameManager : MonoBehaviour
     }
 
     #region functions related to task
-    public void SetTaskStatus(string taskName, string status)
+
+    public void SetTaskStatus(string taskName, string status, ulong playerId)
+    {
+        GetPlayerNetworkCommunicator(playerId).SetPlayerTaskStatusServerRPC(taskName, status, playerId);
+    }
+    
+    public void SetCurrentPlayerTaskStatus(string taskName, string status)
     {
         players[CurrentPlayerId].tasksStatus[taskName] = status;
         

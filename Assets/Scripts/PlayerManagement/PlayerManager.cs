@@ -66,7 +66,7 @@ public class PlayerManager : MonoBehaviour
                 GameManager.Instance.AddCurrentPlayerGlobalScore(-10);
             }
             //Reset all task status
-            GameManager.Instance.SetTaskStatus(task.name, "not done");
+            GameManager.Instance.SetCurrentPlayerTaskStatus(task.name, "not done");
         }
     }
     #endregion
