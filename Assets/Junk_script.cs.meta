@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 571b76fc11201a047891eedd48f09b5c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - junk_good_sprite: {fileID: 21300000, guid: 35029530e507bc243a47c4a08328016c, type: 3}
+  - junk_medium_sprite: {fileID: 21300000, guid: d8d3c8a06d599ef42a3a9ee6d3d458fa, type: 3}
+  - junk_bad_sprite: {fileID: 21300000, guid: 415213befd295294e8a531e43e8338aa, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

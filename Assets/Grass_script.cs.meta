@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0631b30b8dc1a8f4891ca7f5a872a740
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - grass_good_sprite: {fileID: 21300000, guid: b9b18c87d7d50ec42b2a94e5f27415c4, type: 3}
+  - grass_medium_sprite: {fileID: 21300000, guid: ccac605694cc2a549af708611e99909c, type: 3}
+  - grass_bad_sprite: {fileID: 21300000, guid: 2e947fe7cf5660449a2015efb91de8b7, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

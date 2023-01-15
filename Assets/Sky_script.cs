@@ -27,7 +27,7 @@ public class Sky_script : MonoBehaviour
         }
         else if (sky == 2)
         {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = sky_medium_sprite;
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = sky_bad_sprite;
         }
     }
 }
