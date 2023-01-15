@@ -51,6 +51,7 @@ public class SwitchLightMinigame : MonoBehaviour, IMinigame
     public bool IsCompleted { get; set; }
     public int EnvironmentPoints { get; set; }
     public PlayerManager? IPlayer { get; set; } = null;
+    public ulong PlayerId { get; set; }
 
     public string buttonParameter;
     public List<Image> bulbs = new List<Image>();
@@ -214,7 +215,6 @@ public class SwitchLightMinigame : MonoBehaviour, IMinigame
         }
 
         stopwatch.Stop();
-        CalculateEnvironmentPoints();
 
         onButton1.gameObject.SetActive(false);
         onButton2.gameObject.SetActive(false);
@@ -230,7 +230,7 @@ public class SwitchLightMinigame : MonoBehaviour, IMinigame
         offButton5.gameObject.SetActive(false);
         offButton6.gameObject.SetActive(false);
 
-        resultText.text = $"Your time: {seconds}s, your environment points: {EnvironmentPoints}";
+        CalculateEnvironmentPoints();
     }
 
     public void CalculateEnvironmentPoints()
@@ -253,5 +253,10 @@ public class SwitchLightMinigame : MonoBehaviour, IMinigame
         {
             EnvironmentPoints = 0;
         }
+
+        resultText.text = $"Your time: {seconds}s, your environment points: {EnvironmentPoints}";
+
+        GameManager.Instance.AddPointsToPlayer(PlayerId, PointsType.AIR, EnvironmentPoints);
+        GameManager.Instance.SetTaskStatus("SwitchLightMinigame", "done", PlayerId);
     }
 }

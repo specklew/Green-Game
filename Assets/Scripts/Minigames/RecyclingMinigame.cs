@@ -269,8 +269,16 @@ public class RecyclingMinigame : MonoBehaviour, IMinigame
 
     public void CalculateEnvironmentPoints()
     {
+        StartCoroutine(DisableObjectAfterSeconds(rubbishContainerImage1, 0.5f));
+        StartCoroutine(DisableObjectAfterSeconds(rubbishContainerImage2, 0.5f));
+        StartCoroutine(DisableObjectAfterSeconds(rubbishContainerImage3, 0.5f));
+        StartCoroutine(DisableObjectAfterSeconds(rubbishContainerImage4, 0.5f));
+
         EnvironmentPoints = correctAnswers / 4;
         resultText.text = $"Correct answers: {correctAnswers}/12, environment points: {EnvironmentPoints}";
+
+        GameManager.Instance.AddPointsToPlayer(PlayerId, PointsType.LITTER, EnvironmentPoints);
+        GameManager.Instance.SetTaskStatus("BrushingTeethMinigame", "done", PlayerId);
     }
 
     IEnumerator DisableObjectAfterSeconds(Image image, float seconds)
