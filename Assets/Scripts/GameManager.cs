@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Multiplayer;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -63,6 +64,16 @@ public class GameManager : MonoBehaviour
     public void AddPointsToCurrentPlayer(PointsType type, int numberOfPoints)
     {
         players[CurrentPlayerId].playerPoints[type] += numberOfPoints;
+    }
+
+    public void AddPointsToPlayer(ulong playerId, PointsType type, int numberOfPoints)
+    {
+        GetPlayerNetworkCommunicator(playerId).AddPointsToPlayerServerRPC(type, numberOfPoints);
+    }
+
+    public PlayerCommunicator GetPlayerNetworkCommunicator(ulong playerId)
+    {
+        return NetworkManager.Singleton.ConnectedClients[playerId].PlayerObject.GetComponent<PlayerCommunicator>();
     }
 
     public int GetCurrentPlayerPointsOfType(PointsType type)
