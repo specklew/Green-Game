@@ -12,35 +12,56 @@ public class SwitchLightMinigame : MonoBehaviour, IMinigame
 {
     #region UI variables
 
-    public GameObject result;
-    public GameObject offButton1;
-    public GameObject offButton2;
-    public GameObject offButton3;
-    public GameObject offButton4;
+    public GameObject description;
     public GameObject bulbImage1;
     public GameObject bulbImage2;
     public GameObject bulbImage3;
     public GameObject bulbImage4;
-    public GameObject button;
+    public GameObject bulbImage5;
+    public GameObject bulbImage6;
+    public GameObject onButton1;
+    public GameObject onButton2;
+    public GameObject onButton3;
+    public GameObject onButton4;
+    public GameObject onButton5;
+    public GameObject onButton6;
+    public GameObject offButton1;
+    public GameObject offButton2;
+    public GameObject offButton3;
+    public GameObject offButton4;
+    public GameObject offButton5;
+    public GameObject offButton6;
+    public GameObject result;
+    public GameObject doneButton;
 
     public Image bulbImageSource1;
     public Image bulbImageSource2;
     public Image bulbImageSource3;
     public Image bulbImageSource4;
-    public Button doneButton;
+    public Image bulbImageSource5;
+    public Image bulbImageSource6;
 
+    public TextMeshProUGUI descriptionText;
     public TextMeshProUGUI resultText;
+    public Button button;
+
+    private Sprite bulbOn;
+    private Sprite bulbOff;
 
     #endregion
 
     public bool IsCompleted { get; set; }
     public int EnvironmentPoints { get; set; }
     public PlayerManager? IPlayer { get; set; } = null;
+
+    public string buttonParameter;
+    public List<Image> bulbs = new List<Image>();
+
     private Stopwatch stopwatch;
     private int seconds;
 
-    private Sprite bulbOn;
-    private Sprite bulbOff;
+    private int bulbOnIndex1;
+    private int bulbOnIndex2;
 
     public SwitchLightMinigame(PlayerManager playerManager)
     {
@@ -69,16 +90,68 @@ public class SwitchLightMinigame : MonoBehaviour, IMinigame
         bulbImageSource2 = bulbImage2.GetComponent<Image>();
         bulbImageSource3 = bulbImage3.GetComponent<Image>();
         bulbImageSource4 = bulbImage4.GetComponent<Image>();
+        bulbImageSource5 = bulbImage5.GetComponent<Image>();
+        bulbImageSource6 = bulbImage6.GetComponent<Image>();
 
-        bulbImageSource1.sprite = bulbOn;
-        bulbImageSource2.sprite = bulbOn;
-        bulbImageSource3.sprite = bulbOn;
-        bulbImageSource4.sprite = bulbOn;
+        System.Random random = new System.Random();
+        bulbOnIndex1 = random.Next(0, 6);
+        bulbOnIndex2 = random.Next(0, 6);
 
-        //doneButton = button.GetCompoment<Button>();
+        if (bulbOnIndex1 == bulbOnIndex2)
+        {
+            bulbOnIndex2 = bulbOnIndex1 - 1 < 0 ? 1 : bulbOnIndex1 - 1;
+        }
 
+        bulbImageSource1.sprite = random.Next(0, 2) == 0 ? bulbOff : bulbOn;
+        bulbImageSource2.sprite = random.Next(0, 2) == 0 ? bulbOff : bulbOn;
+        bulbImageSource3.sprite = random.Next(0, 2) == 0 ? bulbOff : bulbOn;
+        bulbImageSource4.sprite = random.Next(0, 2) == 0 ? bulbOff : bulbOn;
+        bulbImageSource5.sprite = random.Next(0, 2) == 0 ? bulbOff : bulbOn;
+        bulbImageSource6.sprite = random.Next(0, 2) == 0 ? bulbOff : bulbOn;
+
+        bulbs.Add(bulbImageSource1);
+        bulbs.Add(bulbImageSource2);
+        bulbs.Add(bulbImageSource3);
+        bulbs.Add(bulbImageSource4);
+        bulbs.Add(bulbImageSource5);
+        bulbs.Add(bulbImageSource6);
+
+        descriptionText = description.GetComponent<TextMeshProUGUI>();
         resultText = result.GetComponent<TextMeshProUGUI>();
+        button = doneButton.GetComponent<Button>();
+
+        descriptionText.text += (bulbOnIndex1 + 1).ToString() + " and nr " + (bulbOnIndex2 + 1).ToString();
         resultText.text = "";   
+    }
+
+    public void TurnOnBulb1()
+    {
+        bulbImageSource1.sprite = bulbOn;
+    }
+
+    public void TurnOnBulb2()
+    {
+        bulbImageSource2.sprite = bulbOn;
+    }
+
+    public void TurnOnBulb3()
+    {
+        bulbImageSource3.sprite = bulbOn;
+    }
+
+    public void TurnOnBulb4()
+    {
+        bulbImageSource4.sprite = bulbOn;
+    }
+
+    public void TurnOnBulb5()
+    {
+        bulbImageSource5.sprite = bulbOn;
+    }
+
+    public void TurnOnBulb6()
+    {
+        bulbImageSource6.sprite = bulbOn;
     }
 
     public void TurnOffBulb1()
@@ -101,19 +174,56 @@ public class SwitchLightMinigame : MonoBehaviour, IMinigame
         bulbImageSource4.sprite = bulbOff;
     }
 
-    public void DoneButton()
+    public void TurnOffBulb5()
     {
-        if (bulbImageSource1.sprite == bulbOn ||
-            bulbImageSource2.sprite == bulbOn ||
-            bulbImageSource3.sprite == bulbOn ||
-            bulbImageSource4.sprite == bulbOn)
+        bulbImageSource5.sprite = bulbOff;
+    }
+
+    public void TurnOffBulb6()
+    {
+        bulbImageSource6.sprite = bulbOff;
+    }
+
+
+    public void OnDoneButtonClick()
+    {
+        for (int i = 0; i < bulbs.Count; i++)
         {
-            return;
+            if (bulbs[i].sprite == bulbOn && (i == bulbOnIndex1 || i == bulbOnIndex2))
+            {
+                continue;
+            }
+
+            if (bulbs[i].sprite == bulbOff && (i == bulbOnIndex1 || i == bulbOnIndex2))
+            {
+                return;
+            }
+
+            if (bulbs[i].sprite == bulbOn)
+            {
+                return;
+            }
         }
 
         stopwatch.Stop();
         CalculateEnvironmentPoints();
-        //doneButton.gameObject.SetActive(false);
+
+        doneButton.gameObject.SetActive(false);
+
+        onButton1.gameObject.SetActive(false);
+        onButton2.gameObject.SetActive(false);
+        onButton3.gameObject.SetActive(false);
+        onButton4.gameObject.SetActive(false);
+        onButton5.gameObject.SetActive(false);
+        onButton6.gameObject.SetActive(false);
+
+        offButton1.gameObject.SetActive(false);
+        offButton2.gameObject.SetActive(false);
+        offButton3.gameObject.SetActive(false);
+        offButton4.gameObject.SetActive(false);
+        offButton5.gameObject.SetActive(false);
+        offButton6.gameObject.SetActive(false);
+
         resultText.text = $"Your time: {seconds}s, your environment points: {EnvironmentPoints}";
     }
 
@@ -121,15 +231,15 @@ public class SwitchLightMinigame : MonoBehaviour, IMinigame
     {
         seconds = (int) Math.Round(stopwatch.Elapsed.TotalSeconds, 0);
         
-        if (seconds < 3)
+        if (seconds < 7)
         {
             EnvironmentPoints = 3;
         }
-        else if (seconds >= 3 && seconds <= 5)
+        else if (seconds >= 7 && seconds <= 10)
         {
             EnvironmentPoints = 2;
         }
-        else if (seconds > 5 && seconds < 7)
+        else if (seconds > 10 && seconds < 16)
         {
             EnvironmentPoints = 1;
         }
@@ -137,21 +247,5 @@ public class SwitchLightMinigame : MonoBehaviour, IMinigame
         {
             EnvironmentPoints = 0;
         }
-    }
-
-    public void MorbButtons()
-    {
-
-        var b1 = offButton1.GetComponent<Button>();
-        b1.interactable = false;
-
-        var b2 = offButton2.GetComponent<Button>();
-        b2.interactable = false;
-
-        var b3 = offButton3.GetComponent<Button>();
-        b2.interactable = false;
-
-        var b4 = offButton4.GetComponent<Button>();
-        b2.interactable = false;
     }
 }
