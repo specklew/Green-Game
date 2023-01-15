@@ -11,149 +11,64 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField]
     private int previousDay;
-    private int today;
-    private int scoreLastDay;
 
-
-    private void Start()
+    private void Awake()
     {
         progressPopup = progressPopupGameObject.GetComponent<ProgressPopUp>();
+    }
+    private void Start()
+    {
+        int lastLoginDay = System.DateTime.Today.Day;
 
-        //Get the day of today
-        today = (int)System.DateTime.Now.Day;
+        FetchTask();
 
-        //Initialize the array of tasks
-        tasks = new ArrayList(5);
-
-        //Fetch Tasks of the player from database
-        //...code...
-
-        //Fetch World condition from World Design Component
-        FetchWorldCondition();
-
-        //Generate 5 daily tasks if it is a new day
-        if (isNewConnection())
+        if (PlayerPrefs.HasKey("lastLoginDay"))
         {
-            turnNotDoneTaskToFail();
-            UpdateScoreInDatabase();
-            scoreLastDay += GameManager.Instance.GetCurrentPlayerPoints();
-            Generate5DailyTask();
+            int savedlastLoginDay = PlayerPrefs.GetInt("lastLoginDay");
+            if (lastLoginDay != savedlastLoginDay)
+            {
+                CleanTaskEachDay();
+            }
         }
+
+        PlayerPrefs.SetInt("lastLoginDay", lastLoginDay);
     }
     private void Update()
     {
-        progressPopup.setTextScore(GameManager.Instance.GetCurrentPlayerPoints());
+        progressPopup.setTextScore(GameManager.Instance.GetCurrentPlayerGlobalScore());
         progressPopup.setTextName(GameManager.Instance.GetCurrentPlayerName());
     }
 
-
-    #region IPlayerManager
-
-    //Call when a game finished
-    public void UpdateTaskStatus(int taskId, string status)
-    {
-        foreach (Task task in tasks)
-        {
-            if (task.getId() == taskId)
-            {
-                task.setStatus(status);
-            }
-        }
-        UpdateScoreInDatabase();
-        //playerScore = scoreLastDay + playerScore; 
-    }
-
-    public void DisplayPopUp(Task[] dailyTasks)
-    {
-        //TODO Call popup function and display the tasks of dailyTasks
-        //...code...
-    }
-    #endregion
-
     #region Private Methods
-    //compare the day number of today with the day number of the last connection stored in the database
-    private bool isNewConnection()
+    
+    private void FetchTask()
     {
-        //TODO
-        //...code...
-        return true;
-    }
-
-    private void turnNotDoneTaskToFail()
-    {
-        foreach (Task task in tasks)
-        {
-            if (task.getStatus() == "not done")
-            {
-                task.setStatus("failed");
-            }
-        }
-    }
-
-    private ArrayList Generate5DailyTask()
-    {
-        string[] availableTask = new string[] { "RubbishMinigame", "BrushingTeethMinigame", "SwitchLightsMinigame", "ShoppingMinigame", "TransportMinigame" };
         int NUMBER_OF_TASK = 5;
-        int j = 0;
+        string[] availableTask = new string[] { "RubbishMinigame", "BrushingTeethMinigame", "SwitchLightsMinigame", "ShoppingMinigame", "TransportMinigame" };
+        PointsType[] pointsType = new PointsType[] { PointsType.LITTER, PointsType.WATER, PointsType.AIR, PointsType.LITTER, PointsType.AIR };
 
-        if (tasks.Count > 0)
+        for (int i = 0; i < NUMBER_OF_TASK; i++)
         {
-            foreach (Task task in tasks)
-            {
-                if (task.getStatus() == "failed")
-                {
-                    Task currentTask = Task.CreateInstance(GameManager.Instance.CurrentPlayerId, Random.Range(0, 1000), availableTask[j], (PointsType)Random.Range(0, 2), "not done");
-                    tasks.Add(currentTask);
-                    progressPopup.setTask(j, currentTask);
-                }
-                j += 1;
-            }
+            string currentStatus = GameManager.Instance.GetTaskStatus(availableTask[i]);
+            Task currentTask = Task.CreateInstance(GameManager.Instance.CurrentPlayerId, Random.Range(0, 1000), availableTask[i], pointsType[i], currentStatus);
+            tasks.Add(currentTask);
+            progressPopup.setTask(i, currentTask);
         }
-        else
-        {
-            for (int i = 0; i < NUMBER_OF_TASK; i++)
-            {
-                float randomNumber = Random.Range(0, 4);
-                Task currentTask = Task.CreateInstance(GameManager.Instance.CurrentPlayerId, Random.Range(0, 1000), availableTask[i], (PointsType)Random.Range(0, 2), "not done");
-                tasks.Add(currentTask);
-                progressPopup.setTask(i, currentTask);
-            }
-        }
-
-        return tasks;
     }
 
-    private void UpdateScoreInDatabase()
+    private void CleanTaskEachDay()
     {
         foreach (Task task in tasks)
         {
-            if (task.getStatus() == "done")
+            //The player loses points if the deadline is not respected
+            if (GameManager.Instance.GetTaskStatus(task.name) == "not done" || GameManager.Instance.GetTaskStatus(task.name) == "failed")
             {
-                GameManager.Instance.AddPointsToCurrentPlayer(task.getType(), 20);
-            } else if (task.getStatus() == "failed")
-            {
-                GameManager.Instance.AddPointsToCurrentPlayer(task.getType(), -10);
+                GameManager.Instance.AddCurrentPlayerGlobalScore(-10);
             }
+            //Reset all task status
+            GameManager.Instance.SetTaskStatus(task.name, "not done");
         }
     }
-
-
-    private ArrayList FetchTask()
-    {
-        //TODO Fetch tasks of the player from database
-        //...code...
-        return tasks;
-    }
-
-    private void FetchWorldCondition()
-    {
-        //TODO : Get world condition from WorldDesign
-        //...code...
-        progressPopup.setWaterCondition("GOOD");
-        progressPopup.setLitterCondition("GOOD");
-        progressPopup.setAirCondition("GOOD");
-    }
-
     #endregion
 
 }
