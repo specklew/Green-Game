@@ -29,8 +29,8 @@ public class BrushingTeethMinigame : MonoBehaviour, IMinigame
     private Stopwatch stopwatch;
     private double waterUsed;
     private int secondsWithTapTurnedOn;
-    private Sprite openTap;
-    private Sprite closedTap;
+    private Sprite openTap, closedTap;
+
 
     public BrushingTeethMinigame(PlayerManager playerManager)
     {
@@ -79,7 +79,7 @@ public class BrushingTeethMinigame : MonoBehaviour, IMinigame
         EnvironmentPoints = 3 - secondsWithTapTurnedOn / 20;
         if(EnvironmentPoints < -3) EnvironmentPoints = -3;
         //property of IPlayer should be accessed here to store the points, such property does not exist yet
-        resultText.text = "Tap was open for " + secondsWithTapTurnedOn + " seconds,\nYou used " + Math.Round(waterUsed, 1) + " liters of water,\n" + "Your score: " + EnvironmentPoints;
+        resultText.text = "Tap was open for " + secondsWithTapTurnedOn + " seconds, You used " + Math.Round(waterUsed, 1) + " liters of water, Your score: " + EnvironmentPoints;
         IsCompleted = true;
         MorbButtons();
     }

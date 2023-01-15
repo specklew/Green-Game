@@ -2621,6 +2621,7 @@ MonoBehaviour:
   button4: {fileID: 0}
   button5: {fileID: 0}
   button6: {fileID: 0}
+  buyButton: {fileID: 0}
   text1: {fileID: 0}
   text2: {fileID: 0}
   text3: {fileID: 0}
@@ -3612,6 +3613,7 @@ MonoBehaviour:
   button4: {fileID: 2009868157}
   button5: {fileID: 622730432}
   button6: {fileID: 1870249702}
+  buyButton: {fileID: 1713158890}
   text1: {fileID: 0}
   text2: {fileID: 0}
   text3: {fileID: 0}
