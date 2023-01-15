@@ -578,8 +578,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6, y: 33.039}
-  m_SizeDelta: {x: 715.769, y: 63.9213}
+  m_AnchoredPosition: {x: 0.000020023, y: 66.914}
+  m_SizeDelta: {x: 780.4, y: 71.172}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &340198188
 MonoBehaviour:
@@ -611,7 +611,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.2784314, g: 0.2784314, b: 0.2784314, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3558,31 +3558,31 @@ MonoBehaviour:
   incorrectIcon2: {fileID: 235600279}
   incorrectIcon3: {fileID: 1359891434}
   incorrectIcon4: {fileID: 248636287}
-  rubbishImage1: {fileID: 0}
-  rubbishImage2: {fileID: 0}
-  rubbishImage3: {fileID: 0}
-  rubbishImage4: {fileID: 0}
-  rubbishImage5: {fileID: 0}
-  rubbishImage6: {fileID: 0}
-  rubbishImage7: {fileID: 0}
-  rubbishImage8: {fileID: 0}
-  rubbishImage9: {fileID: 0}
-  rubbishImage10: {fileID: 0}
-  rubbishImage11: {fileID: 0}
-  rubbishImage12: {fileID: 0}
+  rubbishImage1: {fileID: 684920506}
+  rubbishImage2: {fileID: 2022975733}
+  rubbishImage3: {fileID: 1689183227}
+  rubbishImage4: {fileID: 73275534}
+  rubbishImage5: {fileID: 641993388}
+  rubbishImage6: {fileID: 1365365021}
+  rubbishImage7: {fileID: 640296974}
+  rubbishImage8: {fileID: 1397884887}
+  rubbishImage9: {fileID: 116731484}
+  rubbishImage10: {fileID: 1337874749}
+  rubbishImage11: {fileID: 453890064}
+  rubbishImage12: {fileID: 632163227}
   rubbishContainerImage1: {fileID: 0}
   rubbishContainerImage2: {fileID: 0}
   rubbishContainerImage3: {fileID: 0}
   rubbishContainerImage4: {fileID: 0}
-  correctIconImage1: {fileID: 0}
-  correctIconImage2: {fileID: 0}
-  correctIconImage3: {fileID: 0}
-  correctIconImage4: {fileID: 0}
-  incorrectIconImage1: {fileID: 0}
-  incorrectIconImage2: {fileID: 0}
-  incorrectIconImage3: {fileID: 0}
-  incorrectIconImage4: {fileID: 0}
-  resultText: {fileID: 0}
+  correctIconImage1: {fileID: 2141229880}
+  correctIconImage2: {fileID: 497453156}
+  correctIconImage3: {fileID: 1152980771}
+  correctIconImage4: {fileID: 1741373739}
+  incorrectIconImage1: {fileID: 1719704735}
+  incorrectIconImage2: {fileID: 235600282}
+  incorrectIconImage3: {fileID: 1689183227}
+  incorrectIconImage4: {fileID: 248636290}
+  resultText: {fileID: 340198188}
 --- !u!1 &2022975729
 GameObject:
   m_ObjectHideFlags: 0

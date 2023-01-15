@@ -160,12 +160,12 @@ public class RecyclingMinigame : MonoBehaviour, IMinigame
         {
             correctAnswers++;
             correctIconImage1.gameObject.SetActive(true);
-            StartCoroutine(DisableObjectAfterSeconds(correctIconImage1, 1));
+            StartCoroutine(DisableObjectAfterSeconds(correctIconImage1, 0.5f));
         }
         else
         {
             incorrectIconImage1.gameObject.SetActive(true);
-            StartCoroutine(DisableObjectAfterSeconds(incorrectIconImage1, 1));
+            StartCoroutine(DisableObjectAfterSeconds(incorrectIconImage1, 0.5f));
         }
 
         rubbishList[0].Value.gameObject.SetActive(false);
@@ -188,12 +188,12 @@ public class RecyclingMinigame : MonoBehaviour, IMinigame
         {
             correctAnswers++;
             correctIconImage2.gameObject.SetActive(true);
-            StartCoroutine(DisableObjectAfterSeconds(correctIconImage2, 1));
+            StartCoroutine(DisableObjectAfterSeconds(correctIconImage2, 0.5f));
         }
         else
         {
             incorrectIconImage2.gameObject.SetActive(true);
-            StartCoroutine(DisableObjectAfterSeconds(incorrectIconImage2, 1));
+            StartCoroutine(DisableObjectAfterSeconds(incorrectIconImage2, 0.5f));
         }
 
         rubbishList[0].Value.gameObject.SetActive(false);
@@ -216,12 +216,12 @@ public class RecyclingMinigame : MonoBehaviour, IMinigame
         {
             correctAnswers++;
             correctIconImage3.gameObject.SetActive(true);
-            StartCoroutine(DisableObjectAfterSeconds(correctIconImage3, 1));
+            StartCoroutine(DisableObjectAfterSeconds(correctIconImage3, 0.5f));
         }
         else
         {
             incorrectIconImage3.gameObject.SetActive(true);
-            StartCoroutine(DisableObjectAfterSeconds(incorrectIconImage3, 1));
+            StartCoroutine(DisableObjectAfterSeconds(incorrectIconImage3, 0.5f));
         }
 
         rubbishList[0].Value.gameObject.SetActive(false);
@@ -244,12 +244,12 @@ public class RecyclingMinigame : MonoBehaviour, IMinigame
         {
             correctAnswers++;
             correctIconImage4.gameObject.SetActive(true);
-            StartCoroutine(DisableObjectAfterSeconds(correctIconImage4, 1));
+            StartCoroutine(DisableObjectAfterSeconds(correctIconImage4, 0.5f));
         }
         else
         {
             incorrectIconImage4.gameObject.SetActive(true);
-            StartCoroutine(DisableObjectAfterSeconds(incorrectIconImage4, 1));
+            StartCoroutine(DisableObjectAfterSeconds(incorrectIconImage4, 0.5f));
         }
 
         rubbishList[0].Value.gameObject.SetActive(false);
