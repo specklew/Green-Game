@@ -26,4 +26,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SwitchLightMinigame.unity
     guid: 1370f828da0f04c488181bf11f89d34b
+  - enabled: 1
+    path: Assets/Scenes/ShoppingMinigame.unity
+    guid: 7cc7219c6642f1f4a8390b19edbdb6e2
+  - enabled: 1
+    path: Assets/Scenes/Recycling Minigame.unity
+    guid: 5ecae03fb43267241b670d08deb60da1
+  - enabled: 1
+    path: Assets/Scenes/BrushingTeethMinigame.unity
+    guid: 3247eef5e62a8394daf66f0bf41b77d6
+  - enabled: 1
+    path: Assets/Scenes/Multiplayer.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}
