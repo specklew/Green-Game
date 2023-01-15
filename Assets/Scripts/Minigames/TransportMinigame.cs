@@ -78,6 +78,8 @@ public class TransportMinigame : MonoBehaviour, IMinigame
     {
         EnvironmentPoints = chosenTransport.PointsValue;                    //property of IPlayer should be accessed here to store the points, such property does not exist yet
         resultText.text = "You selected " + chosenTransport.Name + ", Your score: " + EnvironmentPoints.ToString();
+        GameManager.Instance.AddCurrentPlayerGlobalScore(EnvironmentPoints);
+        GameManager.Instance.AddPointsToCurrentPlayer(PointsType.AIR, EnvironmentPoints);
     }
 
     public void T1ButtonOnClick()

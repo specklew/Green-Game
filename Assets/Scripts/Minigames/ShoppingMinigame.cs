@@ -111,6 +111,10 @@ public class ShoppingMinigame : MonoBehaviour, IMinigame
             }
         }
         resultText.text = "Your score: " + EnvironmentPoints;
+        GameManager.Instance.AddCurrentPlayerGlobalScore(EnvironmentPoints);
+        GameManager.Instance.AddPointsToCurrentPlayer(PointsType.LITTER, EnvironmentPoints);
+        GameManager.Instance.AddPointsToCurrentPlayer(PointsType.WATER, EnvironmentPoints);
+        GameManager.Instance.AddPointsToCurrentPlayer(PointsType.AIR, EnvironmentPoints);
         IsCompleted = true;
         MorbButtons();
     }
@@ -286,6 +290,7 @@ public class ShoppingMinigame : MonoBehaviour, IMinigame
         var b6 = button6.GetComponent<Button>();
         b6.GetComponentInChildren<TMP_Text>().text = "score: " + shopItems[5].PointsValue.ToString();
         b6.interactable = false;
+        
 
         //uncomment this when integrated with game manager
         //GameManager.Instance.AddPointsToCurrentPlayer(PointsType.AIR, EnvironmentPoints);

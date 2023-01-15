@@ -60,6 +60,7 @@ public class SwitchLightMinigame : MonoBehaviour, IMinigame
 
     private int bulbOnIndex1;
     private int bulbOnIndex2;
+    public ulong PlayerId { get; set; }
 
     public SwitchLightMinigame(PlayerManager playerManager)
     {
@@ -253,5 +254,7 @@ public class SwitchLightMinigame : MonoBehaviour, IMinigame
         {
             EnvironmentPoints = 0;
         }
+        GameManager.Instance.AddCurrentPlayerGlobalScore(EnvironmentPoints);
+        GameManager.Instance.AddPointsToCurrentPlayer(PointsType.AIR, EnvironmentPoints);
     }
 }

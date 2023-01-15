@@ -18,15 +18,15 @@ public class Litter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (litter == 0)
+        if (GameManager.Instance.GetCurrentPlayerPointsOfType(PointsType.LITTER) >= 9)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = litter_good_sprite;
         }
-        else if (litter == 1)
+        else if (GameManager.Instance.GetCurrentPlayerPointsOfType(PointsType.LITTER) > 0 && GameManager.Instance.GetCurrentPlayerPointsOfType(PointsType.LITTER) <= 8)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = litter_medium_sprite;
         }
-        else if (litter == 2)
+        else if (GameManager.Instance.GetCurrentPlayerPointsOfType(PointsType.LITTER) <= 0)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = litter_bad_sprite;
         }

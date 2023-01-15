@@ -18,15 +18,15 @@ public class Air : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.GetCurrentPlayerPointsOfType(PointsType.AIR) == 0)
+        if (GameManager.Instance.GetCurrentPlayerPointsOfType(PointsType.AIR) >= 9)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = air_good_sprite;
         }
-        else if (GameManager.Instance.GetCurrentPlayerPointsOfType(PointsType.AIR) == 1)
+        else if (GameManager.Instance.GetCurrentPlayerPointsOfType(PointsType.AIR) > 0 && GameManager.Instance.GetCurrentPlayerPointsOfType(PointsType.AIR) <= 8)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = air_medium_sprite;
         }
-        else if (GameManager.Instance.GetCurrentPlayerPointsOfType(PointsType.AIR) == 2)
+        else if (GameManager.Instance.GetCurrentPlayerPointsOfType(PointsType.AIR) <= 0)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = air_bad_sprite;
         }

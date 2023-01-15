@@ -118,7 +118,7 @@ public class ProgressPopUp : MonoBehaviour
     {
         setWaterCondition("1");
         setLitterCondition("1");
-        setAirCondition("dziekan");
+        setAirCondition("1");
     }
 
 }
