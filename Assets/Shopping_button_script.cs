@@ -7,6 +7,6 @@ public class Shopping_button_script : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("ShoppingMinigame");
+        GameManager.Instance.LoadMinigame("ShoppingMinigame");
     }
 }

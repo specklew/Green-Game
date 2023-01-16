@@ -7,6 +7,6 @@ public class Recyclingg_button_script : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("Recycling Minigame");
+        GameManager.Instance.LoadMinigame("Recycling Minigame");
     }
 }

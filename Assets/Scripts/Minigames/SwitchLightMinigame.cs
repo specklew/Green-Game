@@ -254,7 +254,7 @@ public class SwitchLightMinigame : MonoBehaviour, IMinigame
         {
             EnvironmentPoints = 0;
         }
-        GameManager.Instance.AddCurrentPlayerGlobalScore(EnvironmentPoints);
-        GameManager.Instance.AddPointsToCurrentPlayer(PointsType.AIR, EnvironmentPoints);
+        GameManager.Instance.AddPointsToPlayer(PlayerId, PointsType.AIR, EnvironmentPoints);
+        GameManager.Instance.SetTaskStatus("SwitchLightMinigame", "done", PlayerId);
     }
 }

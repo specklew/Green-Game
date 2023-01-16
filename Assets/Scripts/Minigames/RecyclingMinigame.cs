@@ -271,8 +271,8 @@ public class RecyclingMinigame : MonoBehaviour, IMinigame
     {
         EnvironmentPoints = correctAnswers / 4;
         resultText.text = $"Correct answers: {correctAnswers}/12, environment points: {EnvironmentPoints}";
-        GameManager.Instance.AddCurrentPlayerGlobalScore(EnvironmentPoints);
-        GameManager.Instance.AddPointsToCurrentPlayer(PointsType.LITTER, EnvironmentPoints);
+        GameManager.Instance.AddPointsToPlayer(PlayerId, PointsType.LITTER, EnvironmentPoints);
+        GameManager.Instance.SetTaskStatus("RecyclingMinigame", "done", PlayerId);
     }
 
     IEnumerator DisableObjectAfterSeconds(Image image, float seconds)

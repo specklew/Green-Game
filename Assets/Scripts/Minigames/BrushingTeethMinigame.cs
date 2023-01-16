@@ -81,8 +81,8 @@ public class BrushingTeethMinigame : MonoBehaviour, IMinigame
         if(EnvironmentPoints < -3) EnvironmentPoints = -3;
         //property of IPlayer should be accessed here to store the points, such property does not exist yet
         resultText.text = "Tap was open for " + secondsWithTapTurnedOn + " seconds, You used " + Math.Round(waterUsed, 1) + " liters of water, Your score: " + EnvironmentPoints;
-        GameManager.Instance.AddCurrentPlayerGlobalScore(EnvironmentPoints);
-        GameManager.Instance.AddPointsToCurrentPlayer(PointsType.WATER, EnvironmentPoints);
+        GameManager.Instance.AddPointsToPlayer(PlayerId, PointsType.WATER, EnvironmentPoints);
+        GameManager.Instance.SetTaskStatus("BrushingTeethMinigame", "done", PlayerId);
         IsCompleted = true;
         MorbButtons();
     }
@@ -95,9 +95,6 @@ public class BrushingTeethMinigame : MonoBehaviour, IMinigame
 
         var b2 = button2.GetComponent<Button>();
         b2.interactable = false;
-
-        //uncomment this when integrated with game manager
-        //GameManager.Instance.AddPointsToCurrentPlayer(PointsType.AIR, EnvironmentPoints);
-        //GameManager.Instance.SetTaskStatus("BrushingTeethMinigame", "done");
+        
     }
 }

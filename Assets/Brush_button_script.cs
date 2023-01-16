@@ -7,6 +7,6 @@ public class Brush_button_script : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("BrushingTeethMinigame");
+        GameManager.Instance.LoadMinigame("BrushingTeethMinigame");
     }
 }

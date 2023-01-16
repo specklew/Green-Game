@@ -8,6 +8,6 @@ public class Bulb_button_script : MonoBehaviour
     
     public void PlayGame()
     {
-        SceneManager.LoadScene("SwitchLightMinigame");
+        GameManager.Instance.LoadMinigame("SwitchLightMinigame");
     }
 }
